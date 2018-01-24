@@ -1,5 +1,8 @@
 package view;
 
+import model.Car;
+import model.Location;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,6 +10,7 @@ class CarParkView extends JPanel {
 
     private Dimension size;
     private Image carParkImage;
+    private SimulatorView simView;
 
     /**
      * Constructor for objects of class CarPark
@@ -48,11 +52,11 @@ class CarParkView extends JPanel {
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for(int row = 0; row < getNumberOfRows(); row++) {
-                for(int place = 0; place < getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < simView.getNumberOfFloors(); floor++) {
+            for(int row = 0; row < simView.getNumberOfRows(); row++) {
+                for(int place = 0; place < simView.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = getCarAt(location);
+                    Car car = simView.getCarAt(location);
                     Color color = car == null ? Color.white : car.getColor();
                     drawPlace(graphics, location, color);
                 }

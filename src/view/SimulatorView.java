@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import model.Location;
+import model.Car;
 
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
