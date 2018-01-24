@@ -8,27 +8,12 @@ public class Model{
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
 
-
+    private Time time;
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
-
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
-
-    private int tickPause = 100;
-
-    int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 5; // average number of arriving cars per hour
-
-    int enterSpeed = 3; // number of cars that can enter per minute
-    int paymentSpeed = 7; // number of cars that can pay per minute
-    int exitSpeed = 5; // number of cars that can leave per minute
 
     public Model() {
         entranceCarQueue = new CarQueue();
@@ -36,66 +21,36 @@ public class Model{
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         simulatorView = new SimulatorView(3, 6, 30);
-    }
-
-    public void run() {
-        for (int i = 0; i < 10000; i++) {
-            tick();
-        }
-    }
-
-    private void tick() {
-        advanceTime();
-        handleExit();
-        updateViews();
-        // Pause.
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        handleEntrance();
-    }
-
-    private void advanceTime(){
-        // Advance the time by one minute.
-        minute++;
-        while (minute > 59) {
-            minute -= 60;
-            hour++;
-        }
-        while (hour > 23) {
-            hour -= 24;
-            day++;
-        }
-        while (day > 6) {
-            day -= 7;
-        }
+        time = new Time(this);
 
     }
 
-    private void handleEntrance(){
+    public void run(){
+        time.run();
+    }
+
+    protected void handleEntrance(){
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
     }
 
-    private void handleExit(){
+    protected void handleExit(){
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
     }
 
-    private void updateViews(){
+    protected void updateViews(){
         simulatorView.tick();
         // Update the car park view.
         simulatorView.updateView();
     }
 
     private void carsArriving(){
-        int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
+        int numberOfCars=getNumberOfCars(time.weekDayArrivals, time.weekendArrivals);
         addArrivingCars(numberOfCars, AD_HOC);
-        numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
+        numberOfCars=getNumberOfCars(time.weekDayPassArrivals, time.weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
     }
 
@@ -104,7 +59,7 @@ public class Model{
         // Remove car from the front of the queue and assign to a parking space.
         while (queue.carsInQueue()>0 &&
                 simulatorView.getNumberOfOpenSpots()>0 &&
-                i<enterSpeed) {
+                i<time.enterSpeed) {
             Car car = queue.removeCar();
             Location freeLocation = simulatorView.getFirstFreeLocation();
             simulatorView.setCarAt(freeLocation, car);
@@ -130,7 +85,7 @@ public class Model{
     private void carsPaying(){
         // Let cars pay.
         int i=0;
-        while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
+        while (paymentCarQueue.carsInQueue()>0 && i < time.paymentSpeed){
             Car car = paymentCarQueue.removeCar();
             // TODO Handle payment.
             carLeavesSpot(car);
@@ -141,7 +96,7 @@ public class Model{
     private void carsLeaving(){
         // Let cars leave.
         int i=0;
-        while (exitCarQueue.carsInQueue()>0 && i < exitSpeed){
+        while (exitCarQueue.carsInQueue()>0 && i < time.exitSpeed){
             exitCarQueue.removeCar();
             i++;
         }
@@ -151,7 +106,7 @@ public class Model{
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = day < 5
+        int averageNumberOfCarsPerHour = time.getDay() < 5
                 ? weekDay
                 : weekend;
 

@@ -20,7 +20,7 @@ public class SimulatorView extends JFrame {
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        carParkView = new CarParkView();
+        carParkView = new CarParkView(this);
 
         Container contentPane = getContentPane();
         contentPane.add(carParkView, BorderLayout.CENTER);

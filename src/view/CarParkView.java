@@ -1,7 +1,7 @@
 package view;
 
-import model.Car;
-import model.Location;
+import main.Simulator;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +15,9 @@ class CarParkView extends JPanel {
     /**
      * Constructor for objects of class CarPark
      */
-    public CarParkView() {
+    public CarParkView(SimulatorView simView) {
         size = new Dimension(0, 0);
+        this.simView = simView;
     }
 
     /**
