@@ -43,6 +43,14 @@ public abstract class Car extends TimedOccupant{
     }
 
     /**
+     * Sets if car has to pay
+     * @param hasToPay - True if car has to pay, false if not.
+     */
+    void setHasToPay(boolean hasToPay) {
+        this.hasToPay = hasToPay;
+    }
+
+    /**
      * Abstracht method that gets the color
      * @return color
      */
