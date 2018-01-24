@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 
-import model;
+import model.Model;
 
 public class Controller extends AbstractController {
 
@@ -16,12 +16,10 @@ public class Controller extends AbstractController {
     }
 
     @Override
-
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
 
         if(e.getActionCommand().equals("start")){
-            System.out.println("Start has been pressed");
+            System.out.println("Started");
         }
         if(e.getActionCommand().equals("pause")){
 
