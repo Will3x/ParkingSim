@@ -1,5 +1,6 @@
 package model;
 
+import view.SimulatorView;
 import java.util.Random;
 
 public class Model{

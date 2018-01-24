@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.event.ActionListener;
 
-import model;
+import model.Model;
 
 public abstract class AbstractController implements ActionListener{
     protected Model model;
