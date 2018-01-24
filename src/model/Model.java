@@ -2,7 +2,7 @@ package model;
 
 import java.util.Random;
 
-public class Model {
+public class Model{
 
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
