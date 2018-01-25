@@ -11,8 +11,6 @@ public class Time {
 
     private static Time instance = new Time();
 
-
-
     /**
      * Creates a time instance with an array with all days in it.
      */
@@ -70,8 +68,6 @@ public class Time {
     int getMinute(){
         return minute;
     }
-
-
 
     protected Time(Model model){
         this.model = model;

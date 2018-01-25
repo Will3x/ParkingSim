@@ -51,13 +51,11 @@ public class SettingsView extends JPanel {
         add(exitLab);
         add(exitSpeed);
 
-
-
-
+        this.setLayout(new GridLayout(4,0,0,7));
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(870, 100);
+        return new Dimension(870, 120);
     }
 
 

@@ -42,10 +42,6 @@ public class Model{
         time.run();
     }
 
-    public void run(int steps){
-        time.run(steps);
-    }
-
     protected void handleEntrance(){
         carsArriving();
         carsEntering(entrancePassQueue);
