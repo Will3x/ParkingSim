@@ -9,6 +9,7 @@ public class Time {
     private int minute = 0;
 
     private int tickPause = 100;
+    private int steps = 1000;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -24,7 +25,6 @@ public class Time {
     }
 
     public void run() {
-        int steps = 1000;
         for (int i = 0; i < steps; i++) {
             tick();
         }
