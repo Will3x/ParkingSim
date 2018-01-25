@@ -19,12 +19,19 @@ public class Time {
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
 
-    public Time(Model model){
+    protected Time(Model model){
         this.model = model;
     }
 
     public void run() {
-        for (int i = 0; i < 10000; i++) {
+        int steps = 1000;
+        for (int i = 0; i < steps; i++) {
+            tick();
+        }
+    }
+
+    public void run(int steps) {
+        for (int i = 0; i < steps; i++) {
             tick();
         }
     }

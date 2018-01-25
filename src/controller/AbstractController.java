@@ -11,7 +11,6 @@ public abstract class AbstractController implements ActionListener{
         return model;
     }
 
-
     public void setModel(Model model) {
         this.model = model;
     }
