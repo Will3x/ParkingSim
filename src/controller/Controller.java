@@ -1,10 +1,13 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.util.concurrent.TimeUnit;
+
 import model.*;
 
 public class Controller extends AbstractController {
 
+    private Thread t;
     private boolean flag = false;
 
     public Controller(Model model) {
@@ -14,24 +17,30 @@ public class Controller extends AbstractController {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getActionCommand().equals("start")){
-            while(!flag) {
-                Thread thread = new Thread(() -> model.run());
-                thread.start();
+        if (e.getActionCommand().equals("start")) {
+
+            if (!flag) {
+                t = new Thread(() -> model.run());
+                t.start();
+                System.out.println("Started the simulator");
                 flag = true;
+            } else {
+                System.out.println("Simulator is already running.");
             }
         }
 
-        if(e.getActionCommand().equals("pause")) {
+        if (e.getActionCommand().equals("pause")) {
             System.out.println("Paused");
         }
 
-        if(e.getActionCommand().equals("quit")){
-            System.out.println("Stopped the program");
+        if (e.getActionCommand().equals("quit")) {
+                System.out.println("Stopped the program");
+                System.exit(1);
         }
 
-        if(e.getActionCommand().equals("step")){
-            System.out.println("Step");
+        if (e.getActionCommand().equals("step")) {
+                System.out.println("Step");
         }
+
     }
 }
