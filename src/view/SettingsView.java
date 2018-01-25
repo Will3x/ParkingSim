@@ -24,9 +24,6 @@ public class SettingsView extends JPanel {
     private JLabel exitLab;
 
 
-    /**
-     * Constructor for objects of class CarPark
-     */
     public SettingsView(SimulatorView simView, Model model) {
         size = new Dimension(0, 0);
         this.simView = simView;

@@ -145,4 +145,8 @@ public class Time {
     void setNewWeek(boolean newWeek){
         this.newWeek = newWeek;
     }
+
+    public void setSteps(int steps){
+        this.steps = steps;
+    }
 }

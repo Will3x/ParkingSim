@@ -10,8 +10,10 @@ public class SimulatorView extends JFrame {
 
     private CarParkView carParkView;
     private SettingsView setView;
+    private PiechartView pieView;
 
     private JPanel toolbar;
+    private JPanel mainPanel;
     private JButton start;
     private JButton pause;
     private JButton quit;
@@ -20,9 +22,11 @@ public class SimulatorView extends JFrame {
 
         carParkView = new CarParkView(this, model);
         setView = new SettingsView(this, model);
+        pieView = new PiechartView(this, model);
 
         Controller controller = new Controller(model);
 
+        mainPanel = new JPanel();
         this.toolbar = new JPanel();
 
         start = new JButton("start");
@@ -37,14 +41,18 @@ public class SimulatorView extends JFrame {
         toolbar.add(pause);
         toolbar.add(quit);
 
+        mainPanel.add(carParkView);
+        mainPanel.add(pieView);
 
         Container contentPane = getContentPane();
 
-        contentPane.add(carParkView, BorderLayout.NORTH);
+        contentPane.add(mainPanel, BoxLayout.X_AXIS);
+//        contentPane.add(setView, BorderLayout.NORTH); TODO: Move to menu bar.
         contentPane.add(toolbar, BorderLayout.SOUTH);
-        contentPane.add(setView, BorderLayout.CENTER);
 
         toolbar.setLayout(new GridLayout(1, 0));
+
+        setTitle("Parkeer Simulator");
 
         pack();
         setVisible(true);

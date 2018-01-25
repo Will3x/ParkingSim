@@ -1,8 +1,6 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.util.concurrent.TimeUnit;
-
 import model.*;
 
 public class Controller extends AbstractController {
@@ -35,11 +33,7 @@ public class Controller extends AbstractController {
 
         if (e.getActionCommand().equals("quit")) {
                 System.out.println("Stopped the program");
-                System.exit(1);
-        }
-
-        if (e.getActionCommand().equals("step")) {
-                System.out.println("Step");
+                System.exit(0);
         }
 
     }
