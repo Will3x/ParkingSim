@@ -1,6 +1,8 @@
 package model;
 
 import view.SimulatorView;
+
+import java.awt.*;
 import java.util.Random;
 
 public class Model{
@@ -17,6 +19,8 @@ public class Model{
 
     private Car[][][] cars;
 
+    private int parkedPassCars;
+    private int parkedCars;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -181,6 +185,11 @@ public class Model{
         if (oldCar == null) {
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
+            if (car.getColor().equals(Color.blue)){
+                parkedPassCars++;
+            } else {
+                parkedCars++;
+            }
             numberOfOpenSpots--;
             return true;
         }
@@ -254,5 +263,11 @@ public class Model{
         return true;
     }
 
+    public int getParkedPassCars() {
+        return parkedPassCars;
+    }
 
+    public int getParkedCars() {
+        return parkedCars;
+    }
 }

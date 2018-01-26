@@ -4,6 +4,7 @@ public class Time {
 
     private Model model;
     private String[] dayStrings;
+    private PieChart02 pieChart;
     private int day = 0;
     private int hour = 0;
     private int minute = 0;

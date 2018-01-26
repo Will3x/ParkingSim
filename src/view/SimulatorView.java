@@ -47,7 +47,7 @@ public class SimulatorView extends JFrame {
         Container contentPane = getContentPane();
 
         contentPane.add(mainPanel, BoxLayout.X_AXIS);
-//        contentPane.add(setView, BorderLayout.NORTH); TODO: Move to menu bar.
+//        contentPane.add(setView, BorderLayout.NORTH); //TODO: Move to menu bar.
         contentPane.add(toolbar, BorderLayout.SOUTH);
 
         toolbar.setLayout(new GridLayout(1, 0));
