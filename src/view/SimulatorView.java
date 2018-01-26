@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-
 import controller.Controller;
 import model.Model;
 
@@ -17,6 +16,11 @@ public class SimulatorView extends JFrame {
     private JButton start;
     private JButton pause;
     private JButton quit;
+
+    private JMenuBar menuBar;
+    private JMenu setMenu;
+
+
 
     public SimulatorView(Model model) {
 
@@ -33,6 +37,23 @@ public class SimulatorView extends JFrame {
         pause = new JButton("pause");
         quit = new JButton("quit");
 
+        setTitle("Menu Example");
+        setSize(150, 150);
+
+        // Creates a menubar for a JFrame
+        menuBar = new JMenuBar();
+
+        // Add the menubar to the frame
+        setJMenuBar(menuBar);
+
+        // Define and add two drop down menu to the menubar
+        setMenu = new JMenu("Settings");
+        menuBar.add(setMenu);
+
+        // Create and add simple menu item to one of the drop down menu
+        JMenuItem editSettings = new JMenuItem("edit settings");
+        setMenu.add(editSettings);
+
         start.addActionListener(controller);
         pause.addActionListener(controller);
         quit.addActionListener(controller);
@@ -47,7 +68,7 @@ public class SimulatorView extends JFrame {
         Container contentPane = getContentPane();
 
         contentPane.add(mainPanel, BoxLayout.X_AXIS);
-//        contentPane.add(setView, BorderLayout.NORTH); //TODO: Move to menu bar.
+        contentPane.add(setView, BorderLayout.NORTH); //TODO: Move to menu bar.
         contentPane.add(toolbar, BorderLayout.SOUTH);
 
         toolbar.setLayout(new GridLayout(1, 0));
@@ -65,4 +86,7 @@ public class SimulatorView extends JFrame {
         carParkView.updateView();
     }
 
+    public CarParkView getCarParkView() {
+        return carParkView;
+    }
 }

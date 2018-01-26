@@ -4,7 +4,6 @@ public class Time {
 
     private Model model;
     private String[] dayStrings;
-    private PieChart02 pieChart;
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
@@ -27,7 +26,7 @@ public class Time {
     }
 
     private int tickPause = 100;
-    private int steps = 1000;
+    private int steps = 10000;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -50,7 +49,7 @@ public class Time {
      * Returns the current day.
      * @return the current day.
      */
-    int getDay(){
+    public int getDay(){
         return day;
     }
 
@@ -114,7 +113,6 @@ public class Time {
             day -= 7;
             newWeek = true;
         }
-
     }
 
     /**

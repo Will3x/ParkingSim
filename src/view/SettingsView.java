@@ -29,7 +29,7 @@ public class SettingsView extends JPanel {
         this.simView = simView;
         this.model = model;
 
-        steps = new JTextField("1000", 10); //TODO: MAKE DYNAMIC
+        steps = new JTextField("10000", 10); //TODO: MAKE DYNAMIC
         enterSpeed = new JTextField("3", 10);
         paymentSpeed = new JTextField("7", 10);
         exitSpeed = new JTextField("5", 10);

@@ -11,6 +11,8 @@ class CarParkView extends JPanel {
     private Image carParkImage;
     private SimulatorView simView;
     private Model model;
+    private JLabel daysPassed;
+    private Time time;
 
     /**
      * Constructor for objects of class CarPark
@@ -19,6 +21,8 @@ class CarParkView extends JPanel {
         size = new Dimension(0, 0);
         this.simView = simView;
         this.model = model;
+        this.daysPassed = new JLabel();
+
     }
 
     /**

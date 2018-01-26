@@ -13,14 +13,13 @@ public class PiechartView extends JPanel {
     private SimulatorView simView;
     private Model model;
     private PieChart02 chart;
-    private PieChart02 newChart;
     private JPanel pnlChart;
+
 
     public PiechartView(SimulatorView simView, Model model) {
         size = new Dimension(0, 0);
         this.simView = simView;
         this.model = model;
-        setBackground(Color.lightGray);
 
         //Add piechart
         chart = new PieChart02();
@@ -31,7 +30,4 @@ public class PiechartView extends JPanel {
     public Dimension getPreferredSize() {
         return new Dimension(600, 460);
     }
-
-
-
 }
