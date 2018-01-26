@@ -39,7 +39,6 @@ public class Model{
         exitCarQueue = new CarQueue();
         simulatorView = new SimulatorView( this);
         time = new Time(this);
-
    }
 
     public void run(){
