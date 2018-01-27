@@ -2,10 +2,17 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import model.*;
+import view.SettingsView;
+
+import javax.swing.*;
+
+import static java.lang.Integer.parseInt;
 
 public class Controller extends AbstractController {
 
     private Thread t;
+    private SettingsView setView;
+    private Time time;
     private boolean flag = false;
 
     public Controller(Model model) {
@@ -15,8 +22,7 @@ public class Controller extends AbstractController {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getActionCommand().equals("start")) {
-
+       if (e.getActionCommand().equals("start")) {
             if (!flag) {
                 t = new Thread(() -> model.run());
                 t.start();

@@ -9,6 +9,7 @@ public class Model{
 
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
+    private static final String ABBO = "3";
 
     private Time time;
     private CarQueue entranceCarQueue;
@@ -68,6 +69,8 @@ public class Model{
         addArrivingCars(numberOfCars, AD_HOC);
         numberOfCars=getNumberOfCars(time.weekDayPassArrivals, time.weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
+        numberOfCars=getNumberOfCars(time.weekDayPassArrivals, time.weekendPassArrivals);
+        addArrivingCars(numberOfCars, ABBO);
     }
 
     private void carsEntering(CarQueue queue){
@@ -143,6 +146,11 @@ public class Model{
             case PASS:
                 for (int i = 0; i < numberOfCars; i++) {
                     entrancePassQueue.addCar(new ParkingPassCar());
+                }
+                break;
+            case ABBO:
+                for (int i = 0; i < numberOfCars; i++) {
+                    entrancePassQueue.addCar(new ReservationCar());
                 }
                 break;
         }

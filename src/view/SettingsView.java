@@ -1,17 +1,19 @@
 package view;
 
+import controller.Controller;
 import model.Model;
 
 import javax.swing.*;
 import java.awt.*;
-import model.Time;
+
+import static java.lang.Integer.parseInt;
 
 public class SettingsView extends JPanel {
 
     private Dimension size;
     private SimulatorView simView;
     private Model model;
-    private Time time;
+    private Controller controller;
 
     private JTextField steps;
     private JTextField enterSpeed;
@@ -24,12 +26,12 @@ public class SettingsView extends JPanel {
     private JLabel exitLab;
 
 
-    public SettingsView(SimulatorView simView, Model model) {
+    protected SettingsView(SimulatorView simView, Model model) {
         size = new Dimension(0, 0);
         this.simView = simView;
         this.model = model;
 
-        steps = new JTextField("10000", 10); //TODO: MAKE DYNAMIC
+        steps = new JTextField(10); //TODO: MAKE DYNAMIC
         enterSpeed = new JTextField("3", 10);
         paymentSpeed = new JTextField("7", 10);
         exitSpeed = new JTextField("5", 10);
@@ -48,6 +50,8 @@ public class SettingsView extends JPanel {
         add(exitLab);
         add(exitSpeed);
 
+        steps.addActionListener(controller);
+
         this.setLayout(new GridLayout(4,0,0,7));
     }
 
@@ -55,5 +59,7 @@ public class SettingsView extends JPanel {
         return new Dimension(870, 120);
     }
 
-
+    public int getSteps(String txt) {
+        return parseInt(txt);
+    }
 }

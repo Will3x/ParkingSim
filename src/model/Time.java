@@ -79,12 +79,6 @@ public class Time {
         }
     }
 
-    public void run(int steps) {
-        for (int i = 0; i < steps; i++) {
-            tick();
-        }
-    }
-
     private void tick() {
         advanceTime();
         model.handleExit();
