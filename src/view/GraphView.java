@@ -3,7 +3,7 @@ package view;
 import java.awt.*;
 
 public class GraphView extends View {
-    int max;
+    protected int max;
     protected int cars;
 
 

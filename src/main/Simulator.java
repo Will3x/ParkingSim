@@ -26,7 +26,6 @@ public class Simulator {
     private SimulatorController simulatorController;
     private EventController eventController;
     private AddEventController addEventController;
-    private ControlPanelController controlPanelController;
     private StepController stepController;
 
     //Views
@@ -38,7 +37,6 @@ public class Simulator {
     private InfoView infoView;
     private EventView eventView;
     private SimulatorView simView;
-    private ControlPanelView controlPanelView;
     private view.addEventView addEventView;
     private Timer timer;
 
@@ -70,7 +68,7 @@ public class Simulator {
         stepInterface = new StepInterface();
         infoView = new InfoView();
         eventView = new EventView();
-        controlPanelView = new ControlPanelView();
+//        controlPanelView = new ControlPanelView();
         addEventView = new addEventView();
 
 
@@ -81,7 +79,7 @@ public class Simulator {
         infoController = new InfoController(infoView, simulatorModel);
         eventController = new EventController(eventView, simulatorModel);
         addEventController = new AddEventController(addEventView, simulatorModel);
-        controlPanelController = new ControlPanelController(simulatorModel, controlPanelView);
+//        controlPanelController = new ControlPanelController(simulatorModel, controlPanelView);
         //infoController = new InfoController(infoView, simulatorModel);
         stepController = new StepController(stepInterface, simulatorModel);
 
@@ -137,7 +135,6 @@ public class Simulator {
         jPanel.add(timeView, BorderLayout.NORTH);
         jPanel.add(westPanel, BorderLayout.WEST);
         jPanel.add(southPanel, BorderLayout.SOUTH);
-        jPanel.add(controlPanelView, BorderLayout.EAST);
 
 
         jFrame.setJMenuBar(makeMenu());

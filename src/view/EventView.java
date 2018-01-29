@@ -18,8 +18,8 @@ public class EventView extends JPanel {
 
     public void addHeader() {
         GridLayout layout = new GridLayout(0, 7);
-        JPanel jPanel = new JPanel();
         //JPanel.setLayout(layout);
+        JLabel title = new JLabel("EVENT:");
         JLabel name = new JLabel("Name");
         JLabel arrivals = new JLabel("Arrivals:");
         JLabel startDay = new JLabel("Start Dy:");
@@ -28,15 +28,15 @@ public class EventView extends JPanel {
         JLabel endHour = new JLabel("End Hr:");
         JLabel running = new JLabel("Running:");
 
-        jPanel.add(name);
-        jPanel.add(arrivals);
-        jPanel.add(startDay);
-        jPanel.add(startHour);
-        jPanel.add(endDay);
-        jPanel.add(endHour);
-        jPanel.add(running);
+        this.add(title);
+        this.add(name);
+        this.add(arrivals);
+        this.add(startDay);
+        this.add(startHour);
+        this.add(endDay);
+        this.add(endHour);
+        this.add(running);
 
-        add(jPanel);
     }
 
     public void drawEvent(model.Event event) {
