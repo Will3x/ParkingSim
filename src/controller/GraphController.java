@@ -23,6 +23,7 @@ public class GraphController {
         //histoGraph.update();
         lineGraph.update(model.getAdHocCars(), model.getPassCars(), model.getReservationCars());
     }
+
     public int getNumberOfOpenSpots(){
         return model.getNumberOfOpenSpots();
     }

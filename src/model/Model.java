@@ -48,7 +48,7 @@ public class Model
         private int hour = 0;
         private int minute = 0;
     */
-    private Winnings winningsModel;
+    private Profits winningsModel;
 
     private int numberOfFloors;
     private int numberOfRows;
@@ -460,7 +460,7 @@ public class Model
      */
     private void addArrivingCars(int numberOfCars, String type){
         // Add the cars to the back of the queue.
-        winningsModel = Winnings.getInstance();
+        winningsModel = Profits.getInstance();
         switch(type) {
             case AD_HOC:
                 for (int i = 0; i < numberOfCars; i++) {
@@ -489,7 +489,7 @@ public class Model
      * @param car - Car that leaves the spot
      */
     private void carLeavesSpot(Car car){
-        winningsModel = Winnings.getInstance();
+        winningsModel = Profits.getInstance();
         removeCarAt(car.getLocation());
         winningsModel.addWinnings(car.getPayment());
         exitCarQueue.addCar(car);

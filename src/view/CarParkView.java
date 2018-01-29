@@ -5,7 +5,7 @@ import model.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class CarParkView extends JPanel {
+public class CarParkView extends View {
 
     public Dimension size;
     public Image carParkImage;
@@ -78,7 +78,7 @@ public class CarParkView extends JPanel {
                 }
             }
         }
-        repaint();
+        update();
     }
 
     /**

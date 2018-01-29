@@ -3,7 +3,7 @@ package view;
 import java.awt.*;
 import java.util.HashMap;
 
-import controller.WinningsController;
+import controller.ProfitController;
 
 
 public class HistoGraph extends GraphView{
@@ -11,7 +11,7 @@ public class HistoGraph extends GraphView{
     private int width;
     private int xPos;
     private String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-    private WinningsController winnings;
+    private ProfitController winnings;
 
     /**
      * Create the HistoGraph instance and apply the arguments to its fields.
@@ -21,7 +21,7 @@ public class HistoGraph extends GraphView{
      * @param xPos     starting xposition of the drawing.
      * @param winnings Winningscontroller.
      */
-    public HistoGraph (int width, int height ,int max, int xPos, WinningsController winnings) {
+    public HistoGraph (int width, int height ,int max, int xPos, ProfitController winnings) {
         super(width,height,max);
         this.width = width;
         this.height = height;

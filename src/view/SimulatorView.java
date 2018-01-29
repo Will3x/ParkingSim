@@ -11,17 +11,17 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.Timer;
 
-public class SimulatorView {
+public class SimulatorView extends JFrame{
 
     //Models
     private Model simulatorModel;
-    private Winnings winningsModel;
+    private Profits winningsModel;
 
     //Controllers
     private GraphController graphController;
     private TimeController timeController;
     private InfoController infoController;
-    private WinningsController winningsController;
+    private ProfitController winningsController;
     private SimulatorController simulatorController;
     private EventController eventController;
     private AddEventController addEventController;
@@ -46,9 +46,9 @@ public class SimulatorView {
 
         //Winnings
 
-        WinningsView winningsView = new WinningsView();
+        ProfitView winningsView = new ProfitView();
         //winningsModel = new Winnings(0.0, 0.0);
-        winningsController = new WinningsController(winningsView);
+        winningsController = new ProfitController(winningsView);
 
         //Models
         simulatorModel = new Model(3, 6, 30);
@@ -103,7 +103,6 @@ public class SimulatorView {
      * Makes the JPanel where all views are going to be added.
      */
     private void makeJPanel(){
-        JFrame jFrame = new JFrame();
         JPanel jPanel = new JPanel(new BorderLayout());
 
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -132,13 +131,13 @@ public class SimulatorView {
         jPanel.add(southPanel, BorderLayout.SOUTH);
 
 
-        jFrame.setJMenuBar(makeMenu());
+        this.setJMenuBar(makeMenu());
 
-        jFrame.add(jPanel);
-        jFrame.pack();
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setResizable(true);
-        jFrame.setVisible(true);
+        this.add(jPanel);
+        this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(true);
+        this.setVisible(true);
     }
 
     /**
@@ -216,5 +215,6 @@ public class SimulatorView {
         graphController.updateView();
         infoController.updateView();
         eventController.updateView();
+        histoGraph.update();
     }
 }

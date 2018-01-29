@@ -7,7 +7,7 @@ import org.knowm.xchart.XChartPanel;
 import javax.swing.*;
 import java.awt.*;
 
-public class PiechartView extends JPanel {
+public class PiechartView extends View {
 
     private Dimension size;
     private SimulatorView simView;

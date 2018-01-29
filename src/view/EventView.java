@@ -2,7 +2,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class EventView extends JPanel {
+public class EventView extends View {
     private Dimension size;
 
     public EventView() {

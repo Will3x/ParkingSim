@@ -2,20 +2,20 @@ package model;
 
 import java.util.HashMap;
 
-public class Winnings {
+public class Profits {
     private double winnings;
     private double parkedWinnings;
     private HashMap winningsStats;
     private Time time;
 
-    private static Winnings instance = new Winnings(0.0, 0.0);
+    private static Profits instance = new Profits(0.0, 0.0);
 
     /**
      * This class is a Singleton
      * Constructor for Winnings. Holds the winnings
      * @param winnings - winnings
      */
-    public Winnings(double winnings, double parkedWinnings) {
+    public Profits(double winnings, double parkedWinnings) {
         this.winnings = winnings;
         this.parkedWinnings = parkedWinnings;
         this.time = Time.getInstance();
@@ -24,7 +24,7 @@ public class Winnings {
         resetStats();
     }
 
-    public static Winnings getInstance(){
+    public static Profits getInstance(){
         return instance;
     }
 

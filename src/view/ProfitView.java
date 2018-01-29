@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class WinningsView extends JPanel {
+public class ProfitView extends View {
     private JLabel winnings;
     private JLabel parkedWinnings;
 
     /**
      * Create a JLabel with the winningsStats
      */
-    public WinningsView () {
+    public ProfitView() {
         setLayout(new GridLayout(2, 1));
         winnings = new JLabel("Opbrengst: ");
         parkedWinnings = new JLabel("Geparkeerde winst: ");

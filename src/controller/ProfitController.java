@@ -1,19 +1,19 @@
 package controller;
 
-import model.Winnings;
-import view.WinningsView;
+import model.Profits;
+import view.ProfitView;
 
 import java.util.HashMap;
 
-public class WinningsController {
-    private WinningsView view;
-    private Winnings model;
+public class ProfitController {
+    private ProfitView view;
+    private Profits model;
 
-    public WinningsController(WinningsView view) {
+    public ProfitController(ProfitView view) {
         this.view = view;
     }
 
-    public void updateWinnings(double amount) {
+    public void updateProfits(double amount) {
         model.addWinnings(amount);
     }
 
@@ -21,7 +21,7 @@ public class WinningsController {
         model.addParkedWinnings(amount);
     }
 
-    public void resetWinnings() {
+    public void resetProfits() {
         model.setWinnings(0.0);
     }
 
@@ -31,11 +31,11 @@ public class WinningsController {
     }
 
     public HashMap getWinningsStats() {
-        model = Winnings.getInstance();
+        model = Profits.getInstance();
         return model.getWinningsStats();
     }
 
-    public WinningsView getWinningsView() {
+    public ProfitView getProfitsView() {
         return view;
     }
 }

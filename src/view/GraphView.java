@@ -20,11 +20,5 @@ public class GraphView extends View {
         return new Dimension(800, 200);
     }
 
-    /**
-     * repaint the view.
-     */
-    public void update() {
-        repaint();
-    }
 }
 
