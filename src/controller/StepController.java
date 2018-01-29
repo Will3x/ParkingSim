@@ -20,7 +20,7 @@ public class StepController {
         stepview.addStartListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.setSteps(10000);
+                model.setSteps(10080);
                 System.out.println(model.getSteps());
             }
         });
