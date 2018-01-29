@@ -29,7 +29,7 @@ public class CarParkView extends JPanel {
      * Overridden. Tell the GUI manager how big we would like to be.
      */
     public Dimension getPreferredSize() {
-        return new Dimension(870, 410);
+        return new Dimension(870, 500);
     }
 
     public void tickDays(){
@@ -98,13 +98,13 @@ public class CarParkView extends JPanel {
         int y = 370;
         int m = 20;
         switch (name) {
-            case "car": y = 350;
+            case "car": y = 390;
                 break;
-            case "pass": y = 380;
+            case "pass": y = 420;
                 break;
-            case "payment": y = 410;
+            case "payment": y = 450;
                 break;
-            case "exit": y = 440;
+            case "exit": y = 480;
         }
         graphics.setColor(Color.BLACK);
         String drawString = queueAmount + " cars in " + name + " queue";
