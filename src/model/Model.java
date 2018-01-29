@@ -25,16 +25,15 @@ public class Model
     private CarQueue exitCarQueue;
 
     //Simulator default stats
-    private int weekDayArrivals= 120;       // average number of arriving AdHoc cars per hour during week
-    private int weekendArrivals = 250;      // average number of arriving AdHoc cars per hour during weekend
-
+    private int weekDayArrivals= 110;       // average number of arriving AdHoc cars per hour during week
+    private int weekendArrivals = 300;      // average number of arriving AdHoc cars per hour during weekend
 
     private int weekDayReservations = 40;   // average number of PrivateReservations per hour during week
     private int weekendReservations = 100;  // average number of PrivateReservations per hour during weekend
 
     private int passholderAmmount = 120;    // number of passholders
     private int weekDayPassArrivals= 30;    // average number of arriving PassHolder cars per hour during week
-    private int weekendPassArrivals = 25;   // average number of arriving PassHolder cars per hour during weekend
+    private int weekendPassArrivals = 50;   // average number of arriving PassHolder cars per hour during weekend
 
     private int enterSpeed = 3;             // number of cars that can enter per minute
     private int paymentSpeed = 7;           // number of cars that can pay per minute
@@ -42,13 +41,6 @@ public class Model
 
 
     private int steps = 0;
-    private int currentSteps = 0;
-
-    /*
-        private int day = 0;
-        private int hour = 0;
-        private int minute = 0;
-    */
     private Profits winningsModel;
 
     private int numberOfFloors;
@@ -665,7 +657,7 @@ public class Model
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row += 2) {
+            for (int row = 0; row < getNumberOfRows(); row += 1) {
                     for (int place = 5; place < getNumberOfPlaces(); place++) {
 
                         Random rand = new Random();

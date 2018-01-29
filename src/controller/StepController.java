@@ -2,11 +2,11 @@ package controller;
 
 import model.Model;
 import view.StepInterface;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StepController {
+    private Sound sound;
     private StepInterface stepview;
     private Model model;
     private boolean paused = false;
@@ -15,6 +15,7 @@ public class StepController {
     public StepController(final StepInterface stepview, Model model){
         this.stepview = stepview;
         this.model = model;
+        sound = new Sound();
         addEventHandelers();
     }
 
@@ -27,6 +28,7 @@ public class StepController {
                 } else {
                     model.setSteps(10078);
                 }
+                sound.playSound("Blop.wav");
                 System.out.println(model.getSteps());
             }
         });
@@ -64,5 +66,6 @@ public class StepController {
             }
         });
     }
-
 }
+
+
