@@ -14,11 +14,13 @@ public class Model{
     private Time time;
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
+    private CarQueue entranceAbboQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
 
     private Car[][][] cars;
+    private Car car;
 
     private int parkedPassCars;
     private int parkedCars;
@@ -50,6 +52,7 @@ public class Model{
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
+//        carsEntering(entranceAbboQueue);
     }
 
     protected void handleExit(){
@@ -62,6 +65,7 @@ public class Model{
         tick();
         // Update the car park view.
         simulatorView.updateView();
+
     }
 
     private void carsArriving(){
@@ -69,19 +73,28 @@ public class Model{
         addArrivingCars(numberOfCars, AD_HOC);
         numberOfCars=getNumberOfCars(time.weekDayPassArrivals, time.weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
-        numberOfCars=getNumberOfCars(time.weekDayPassArrivals, time.weekendPassArrivals);
+        numberOfCars=getNumberOfCars(time.weekDayAbboArrivals, time.weekendAbboArrivals);
         addArrivingCars(numberOfCars, ABBO);
     }
 
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
-        while (queue.carsInQueue()>0 &&
-                getNumberOfOpenSpots()>0 &&
-                i<time.enterSpeed) {
+        while (queue.carsInQueue()>0 && getNumberOfOpenSpots()>0 && i<time.enterSpeed) {
             Car car = queue.removeCar();
             Location freeLocation = getFirstFreeLocation();
-            setCarAt(freeLocation, car);
+            if (car.getColor().equals(Color.orange)) {
+                Location freePassLocation = getFirstFreeAbboLocation();
+                if (freePassLocation.getFloor() <= freeLocation.getFloor() && freePassLocation.getRow() <= freeLocation.getRow()) {
+                    setCarAt(freePassLocation, car);
+                } else {
+                    setCarAt(freeLocation, car);
+                }
+                this.parkedPassCars++;
+            } else {
+                setCarAt(freeLocation, car);
+                this.parkedCars++;
+            }
             i++;
         }
     }
@@ -125,9 +138,7 @@ public class Model{
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = time.getDay() < 5
-                ? weekDay
-                : weekend;
+        int averageNumberOfCarsPerHour = (time.getDay() >= 5) ? weekend : weekDay;
 
         // Calculate the number of cars that arrive this minute.
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
@@ -219,9 +230,46 @@ public class Model{
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
+            for (int row = 0; row < getNumberOfRows(); row += 2) {
+                    for (int place = 5; place < getNumberOfPlaces(); place++) {
+
+                        Random rand = new Random();
+                        int n = rand.nextInt(4);
+                        int y = rand.nextInt(30);
+                        int newRow = row;
+                        int newPlace = place;
+
+                        if (row + n < getNumberOfRows() && place + y < getNumberOfPlaces()) {
+                            newRow += n;
+                            newPlace += y;
+                        }
+
+                        Location location = new Location(floor, newRow, newPlace);
+                        if (getCarAt(location) == null) {
+                            return location;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+    public Location getFirstFreeAbboLocation() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row += 2) {
+                for (int place = 0; place < 5; place++) {
+
+                    Random rand = new Random();
+                    int n = rand.nextInt(4);
+                    int y = rand.nextInt(4);
+                    int newRow = row;
+                    int newPlace = place;
+
+                    if (row + n < getNumberOfRows() && place + y < getNumberOfPlaces()) {
+                        newRow += n;
+                        newPlace += y;
+                    }
+                    Location location = new Location(floor, newRow, newPlace);
                     if (getCarAt(location) == null) {
                         return location;
                     }

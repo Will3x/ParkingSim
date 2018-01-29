@@ -36,6 +36,8 @@ public class SettingsView extends JPanel {
         paymentSpeed = new JTextField("7", 10);
         exitSpeed = new JTextField("5", 10);
 
+        controller = new Controller(model);
+
         stepsLab = new JLabel("Enter amount of steps: ");
         speedLab = new JLabel("Enter speed: ");
         paymentLab = new JLabel("Enter payment speed: ");
@@ -59,7 +61,8 @@ public class SettingsView extends JPanel {
         return new Dimension(870, 120);
     }
 
-    public int getSteps(String txt) {
+    public int getSteps() {
+        String txt = steps.getText();
         return parseInt(txt);
     }
 }

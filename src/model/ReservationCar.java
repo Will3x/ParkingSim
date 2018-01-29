@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class ReservationCar extends Car {
-    private static final Color COLOR = Color.green;
+    private static final Color COLOR = Color.orange;
 
     public ReservationCar(){
         Random random = new Random();

@@ -4,10 +4,6 @@ import java.awt.event.ActionEvent;
 import model.*;
 import view.SettingsView;
 
-import javax.swing.*;
-
-import static java.lang.Integer.parseInt;
-
 public class Controller extends AbstractController {
 
     private Thread t;
@@ -17,6 +13,7 @@ public class Controller extends AbstractController {
 
     public Controller(Model model) {
         setModel(model);
+        time = time.getInstance();
     }
 
     @Override
@@ -34,7 +31,8 @@ public class Controller extends AbstractController {
         }
 
         if (e.getActionCommand().equals("pause")) {
-            System.out.println("Paused");
+           System.out.println("Paused");
+
         }
 
         if (e.getActionCommand().equals("quit")) {

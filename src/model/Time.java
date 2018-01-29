@@ -1,13 +1,19 @@
 package model;
 
+import view.SettingsView;
+
+import java.util.concurrent.TimeUnit;
+
 public class Time {
 
     private Model model;
     private String[] dayStrings;
+    private SettingsView setView;
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
     private boolean newWeek = false;
+    private boolean pause = false;
 
     private static Time instance = new Time();
 
@@ -32,6 +38,8 @@ public class Time {
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals= 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
+    int weekDayAbboArrivals= 30; // average number of arriving cars per hour
+    int weekendAbboArrivals = 5; // average number of arriving cars per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute

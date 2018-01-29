@@ -13,7 +13,6 @@ class CarParkView extends JPanel {
     private Model model;
     private JLabel daysPassed;
     private Time time;
-
     /**
      * Constructor for objects of class CarPark
      */
@@ -22,7 +21,7 @@ class CarParkView extends JPanel {
         this.simView = simView;
         this.model = model;
         this.daysPassed = new JLabel();
-
+        time = time.getInstance();
     }
 
     /**
@@ -30,6 +29,10 @@ class CarParkView extends JPanel {
      */
     public Dimension getPreferredSize() {
         return new Dimension(870, 410);
+    }
+
+    public void tickDays(){
+        daysPassed.setText(time.getTimeString());
     }
 
     /**
@@ -60,7 +63,13 @@ class CarParkView extends JPanel {
         Graphics graphics = carParkImage.getGraphics();
         for(int floor = 0; floor < model.getNumberOfFloors(); floor++) {
             for(int row = 0; row < model.getNumberOfRows(); row++) {
-                for(int place = 0; place < model.getNumberOfPlaces(); place++) {
+                for(int place = 0; place < 5; place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = model.getCarAt(location);
+                    Color color = car == null ? Color.lightGray : car.getColor();
+                    drawPlace(graphics, location, color);
+                }
+                for(int place = 5; place < model.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
                     Car car = model.getCarAt(location);
                     Color color = car == null ? Color.white : car.getColor();

@@ -18,4 +18,10 @@ public class CarQueue {
     public int carsInQueue(){
         return queue.size();
     }
+
+    public Car peekCar(){
+        return queue.peek();
+    }
+
+
 }
