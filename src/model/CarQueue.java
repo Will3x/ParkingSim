@@ -7,6 +7,12 @@ public class CarQueue {
 
     private Queue<Car> queue = new LinkedList<>();
 
+    private String name;
+
+    CarQueue(String name) {
+        this.name = name;
+    }
+
     public boolean addCar(Car car) {
         return queue.add(car);
     }
@@ -15,13 +21,16 @@ public class CarQueue {
         return queue.poll();
     }
 
-    public int carsInQueue(){
+    public int carsInQueue() {
         return queue.size();
     }
 
-    public Car peekCar(){
-        return queue.peek();
+    public String getName() {
+        return name;
     }
 
-
+    public Queue getQueue() {
+        return queue;
+    }
 }
+

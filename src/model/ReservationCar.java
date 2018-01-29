@@ -14,6 +14,6 @@ public class ReservationCar extends Car {
     }
 
     public Color getColor(){
-    return COLOR;
+        return COLOR;
     }
 }

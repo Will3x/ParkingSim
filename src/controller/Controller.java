@@ -19,7 +19,7 @@ public class Controller extends AbstractController {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-       if (e.getActionCommand().equals("start")) {
+        if (e.getActionCommand().equals("start")) {
             if (!flag) {
                 t = new Thread(() -> model.run());
                 t.start();
@@ -36,8 +36,8 @@ public class Controller extends AbstractController {
         }
 
         if (e.getActionCommand().equals("quit")) {
-                System.out.println("Stopped the program");
-                System.exit(0);
+            System.out.println("Stopped the program");
+            System.exit(0);
         }
 
     }

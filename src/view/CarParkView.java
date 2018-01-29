@@ -5,14 +5,15 @@ import model.*;
 import javax.swing.*;
 import java.awt.*;
 
-class CarParkView extends JPanel {
+public class CarParkView extends JPanel {
 
-    private Dimension size;
-    private Image carParkImage;
-    private SimulatorView simView;
-    private Model model;
-    private JLabel daysPassed;
-    private Time time;
+    public Dimension size;
+    public Image carParkImage;
+    public SimulatorView simView;
+    public Model model;
+    public JLabel daysPassed;
+    public Time time;
+
     /**
      * Constructor for objects of class CarPark
      */
@@ -71,7 +72,7 @@ class CarParkView extends JPanel {
                 }
                 for(int place = 5; place < model.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = model.getCarAt(location);
+                    Car car= model.getCarAt(location);
                     Color color = car == null ? Color.white : car.getColor();
                     drawPlace(graphics, location, color);
                 }
@@ -83,7 +84,7 @@ class CarParkView extends JPanel {
     /**
      * Paint a place on this car park view in a given color.
      */
-    private void drawPlace(Graphics graphics, Location location, Color color) {
+    public void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
         graphics.fillRect(
                 location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
@@ -91,4 +92,27 @@ class CarParkView extends JPanel {
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
+
+    public void drawQueues(Graphics graphics, String name, int queuePlace, Color color, int queueAmount){
+        int x = 75 - 29;
+        int y = 370;
+        int m = 20;
+        switch (name) {
+            case "car": y = 350;
+                break;
+            case "pass": y = 380;
+                break;
+            case "payment": y = 410;
+                break;
+            case "exit": y = 440;
+        }
+        graphics.setColor(Color.BLACK);
+        String drawString = queueAmount + " cars in " + name + " queue";
+        graphics.drawString(drawString, x, y);
+        if(queueAmount > 0) {
+            graphics.setColor(color);
+            graphics.fillRect(x + queuePlace * m, y+5, 20 - 1, 10 - 1);
+        }
+    }
+
 }

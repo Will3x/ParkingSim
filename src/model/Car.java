@@ -6,10 +6,11 @@ import java.awt.*;
 
 public abstract class Car {
 
-    private Location location;
+    public Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
+    double payment;
 
     /**
      * Constructor for objects of class Car
@@ -55,4 +56,8 @@ public abstract class Car {
     }
 
     public abstract Color getColor();
+
+    double getPayment(){
+        return payment;
+    }
 }

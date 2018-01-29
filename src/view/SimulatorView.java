@@ -5,17 +5,19 @@ import java.awt.*;
 import controller.Controller;
 import model.Model;
 
+
 public class SimulatorView extends JFrame {
 
     private CarParkView carParkView;
     private SettingsView setView;
-    private PiechartView pieView;
+    //private PiechartView pieView;
 
     private JPanel toolbar;
     private JPanel mainPanel;
     private JButton start;
     private JButton pause;
     private JButton quit;
+    private SimulatorView simView;
 
     private JMenuBar menuBar;
     private JMenu setMenu;
@@ -24,9 +26,9 @@ public class SimulatorView extends JFrame {
 
     public SimulatorView(Model model) {
 
-        carParkView = new CarParkView(this, model);
+        carParkView = new CarParkView(simView,model );
         setView = new SettingsView(this, model);
-        pieView = new PiechartView(this, model);
+        //pieView = new PiechartView(this, model);
 
         Controller controller = new Controller(model);
 
@@ -63,7 +65,7 @@ public class SimulatorView extends JFrame {
         toolbar.add(quit);
 
         mainPanel.add(carParkView);
-        mainPanel.add(pieView);
+        //mainPanel.add(pieView);
 
         Container contentPane = getContentPane();
 
@@ -79,12 +81,9 @@ public class SimulatorView extends JFrame {
         setVisible(true);
         setResizable(false);
 
-        updateView();
+
     }
 
-    public void updateView() {
-        carParkView.updateView();
-    }
 
     public CarParkView getCarParkView() {
         return carParkView;
