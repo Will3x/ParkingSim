@@ -14,7 +14,7 @@ public class Time {
     /**
      * Creates a time instance with an array with all days in it.
      */
-    private Time(){
+    public Time(){
         dayStrings = new String[7];
         dayStrings[0] = "Monday";
         dayStrings[1] = "Tuesday";
@@ -28,14 +28,6 @@ public class Time {
     private int tickPause = 100;
     private int steps = 10000;
 
-    int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 5; // average number of arriving cars per hour
-
-    int enterSpeed = 3; // number of cars that can enter per minute
-    int paymentSpeed = 7; // number of cars that can pay per minute
-    int exitSpeed = 5; // number of cars that can leave per minute
 
     /**
      * The time class is a singleton. This function returns the instance of time class.
@@ -69,7 +61,7 @@ public class Time {
         return minute;
     }
 
-    protected Time(Model model){
+    public Time(Model model){
         this.model = model;
     }
 
@@ -82,7 +74,7 @@ public class Time {
     private void tick() {
         advanceTime();
         model.handleExit();
-        model.updateViews();
+        //model.updateViews();
         // Pause.
         try {
             Thread.sleep(tickPause);
@@ -92,7 +84,7 @@ public class Time {
         model.handleEntrance();
     }
 
-    private void advanceTime(){
+    public void advanceTime(){
         // Advance the time by one minute.
         minute++;
         while (minute > 59) {

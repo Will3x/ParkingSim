@@ -67,4 +67,15 @@ public class Location {
         return place;
     }
 
+    void setFloor(int floor){
+        this.floor = floor;
+    }
+
+    void setRow(int row){
+        this.row = row;
+    }
+
+    void setPlace(int place){
+        this.place = place;
+    }
 }
