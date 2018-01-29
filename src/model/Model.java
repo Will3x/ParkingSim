@@ -649,8 +649,8 @@ public class Model
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row += 1) {
-                    for (int place = 5; place < getNumberOfPlaces(); place++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                    for (int place = 4; place < getNumberOfPlaces(); place++) {
 
                         Random rand = new Random();
                         int n = rand.nextInt(4);
@@ -675,7 +675,7 @@ public class Model
 
     public Location getFirstFreePassLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row += 2) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
 
                     Random rand = new Random();
@@ -825,24 +825,6 @@ public class Model
         return location;
 
     }
-
-    /**
-     * The getLastFreeLocation gets the last free location in the parking lot
-     * @return free location that is the last spot in parking lot
-     */
-//    private Location getLastFreeLocation() {
-//        for (int floor = (getNumberOfFloors()-1); floor >= 0; floor--) {
-//            for (int row = (getNumberOfRows()-1); row >= 0; row--) {
-//                for (int place = (getNumberOfPlaces()-1); place >= 0; place--) {
-//                    Location location = new Location(floor, row, place);
-//                    if(getCarAt(location) == null && getPassReservationAt(location) == null){
-//                        return location;
-//                    }
-//                }
-//            }
-//        }
-//        return null;
-//    }
 
     /**
      * The getFirstLeavingCar method iterates through the carpark and gets the first leaving car.
@@ -1026,40 +1008,44 @@ public class Model
     private void generateWeeklyPrivateReservations(int weekDay, int weekend) {
         Random rand = new Random();
         double averageNumberOfCarsPerHour = 0;
-        //PARABOLA FORMULE, ZODAT ROND 1500 UUR DRUKKER IS
 
         // Get the average number of cars that arrive per hour during week.
         for(int day = 0; day < 4; day++) {
-            for (int hour = 18; hour < 22; hour++) {
+            for (int hour = 6; hour < 23; hour++) {
                 averageNumberOfCarsPerHour = weekDay;
                 int eventLength = 23-hour;
+                if (hour < 18){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, eventLength) ;}
                 if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.3, day, hour, eventLength) ;}
                 if (hour == 19){createReservations(averageNumberOfCarsPerHour*0.6, day, hour, eventLength) ;}
                 if (hour == 20){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, eventLength) ;}
                 if (hour == 21){createReservations(averageNumberOfCarsPerHour*0.5, day, hour, eventLength) ;}
+                if (hour == 22){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, eventLength) ;}
             }
         }
 
-        for(int day = 4; day < 5; day++){
-            for (int hour = 18; hour < 22; hour++) {
+        for(int day = 4; day < 5; day++){ // Vrijdag
+            for (int hour = 6; hour < 24; hour++) {
                 averageNumberOfCarsPerHour = weekend;
-                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.3, day, hour, 2) ;}
-                if (hour == 19){createReservations(averageNumberOfCarsPerHour*0.6, day, hour, 2) ;}
+                if (hour < 18){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
+                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.5, day, hour, 2) ;}
+                if (hour == 19){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
                 if (hour == 20){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
                 if (hour == 21){createReservations(averageNumberOfCarsPerHour*0.5, day, hour, 2) ;}
                 if (hour == 22){createReservations(averageNumberOfCarsPerHour*0.3, day, hour, 2) ;}
+                if (hour < 24){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
             }
         }
 
         for(int day = 5; day < 7; day++){
-            for (int hour = 12; hour < 18; hour++) {
+            for (int hour = 6; hour < 18; hour++) {
                 averageNumberOfCarsPerHour = weekend;
+                if (hour < 12){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
                 if (hour == 12){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
                 if (hour == 13){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
                 if (hour == 14){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
                 if (hour == 15){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
                 if (hour == 16){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
-                if (hour == 16){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
+                if (hour == 17){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
             }
         }
         reservationsGenerated = true;

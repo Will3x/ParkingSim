@@ -33,7 +33,9 @@ public class PieChart02 implements ExampleChart<PieChart> {
     }
 
     public void updateChart(int amount, int amount2){
-        chart.updatePieSeries("adhoc", amount);
-        chart.updatePieSeries("pass", amount2);
+
+            chart.updatePieSeries("adhoc", amount);
+            chart.updatePieSeries("pass", amount2);
+
     }
 }
