@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
 public class SettingsView extends JPanel {
 
     private Dimension size;
-    private SimulatorView simView;
+    private SimulatorView simSimulatorView;
     private Model model;
     private Controller controller;
 
@@ -26,12 +26,12 @@ public class SettingsView extends JPanel {
     private JLabel exitLab;
 
 
-    protected SettingsView(SimulatorView simView, Model model) {
+    protected SettingsView(SimulatorView simSimulatorView, Model model) {
         size = new Dimension(0, 0);
-        this.simView = simView;
+        this.simSimulatorView = simSimulatorView;
         this.model = model;
 
-        steps = new JTextField(10); //TODO: MAKE DYNAMIC
+        steps = new JTextField(10);
         enterSpeed = new JTextField("3", 10);
         paymentSpeed = new JTextField("7", 10);
         exitSpeed = new JTextField("5", 10);
