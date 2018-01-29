@@ -16,10 +16,11 @@ public class PiechartView extends View {
     private JPanel pnlChart;
 
 
-    public PiechartView(SimulatorView simView, Model model) {
+    public PiechartView(SimulatorView simView, Model model, PieChart02 pie) {
         size = new Dimension(0, 0);
         this.simView = simView;
         this.model = model;
+        chart = pie;
 
         //Add piechart
         chart = new PieChart02();
@@ -29,5 +30,11 @@ public class PiechartView extends View {
 
     public Dimension getPreferredSize() {
         return new Dimension(600, 460);
+    }
+
+    @Override
+    public void update() {
+        chart.updateChart(model.getPassCars(), model.getAdHocCars());
+        super.update();
     }
 }

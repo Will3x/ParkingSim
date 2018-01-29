@@ -28,8 +28,8 @@ public class StepController {
                 } else {
                     model.setSteps(10078);
                 }
-                sound.playSound("Blop.wav");
-                System.out.println(model.getSteps());
+                sound.playSound("click.wav");
+                System.out.println(model.getSteps() + " steps remaining");
             }
         });
 
@@ -39,16 +39,18 @@ public class StepController {
                 temp = model.getSteps();
                 model.setSteps(0);
                 paused = true;
+                sound.playSound("click.wav");
                 /*
                 timer.cancel();
                 stepInterface.disableStop();*/
             }
         });
 
-        stepview.addSingleListener(new ActionListener() {
+        stepview.addQuartListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setSteps(15);
+                sound.playSound("click.wav");
             }
         });
 
@@ -56,6 +58,7 @@ public class StepController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setSteps(60);
+                sound.playSound("click.wav");
             }
         });
 
@@ -63,6 +66,7 @@ public class StepController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setSteps(1440);
+                sound.playSound("click.wav");
             }
         });
     }

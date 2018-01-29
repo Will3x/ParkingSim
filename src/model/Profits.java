@@ -10,14 +10,9 @@ public class Profits {
 
     private static Profits instance = new Profits(0.0, 0.0);
 
-    /**
-     * This class is a Singleton
-     * Constructor for Winnings. Holds the winnings
-     * @param winnings - winnings
-     */
-    public Profits(double winnings, double parkedWinnings) {
-        this.profits = winnings;
-        this.parkedProfits = parkedWinnings;
+    public Profits(double profit, double parkedProfit) {
+        this.profits = profit;
+        this.parkedProfits = parkedProfit;
         this.time = Time.getInstance();
 
         profitStats = new HashMap();
@@ -29,8 +24,8 @@ public class Profits {
     }
 
     /**
-     * Adds winnings
-     * @param addition - winnings to be added
+     * Adds profit
+     * @param addition - profit to be added
      */
     public void addWinnings(double addition) {
         this.time = Time.getInstance();

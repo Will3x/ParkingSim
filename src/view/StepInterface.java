@@ -106,6 +106,7 @@ public class StepInterface extends JPanel {
 
     /**
      * Add ActionListener to the start button.
+     *
      * @param listener ActionListener to add.
      */
     public void addStartListener(ActionListener listener) {
@@ -114,6 +115,7 @@ public class StepInterface extends JPanel {
 
     /**
      * Add ActionListener to the stop button.
+     *
      * @param listener ActionListener to add.
      */
     public void addStopListener(ActionListener listener) {
@@ -122,14 +124,16 @@ public class StepInterface extends JPanel {
 
     /**
      * Add ActionListener to the single step button.
+     *
      * @param listener ActionListener to add.
      */
-    public void addSingleListener(ActionListener listener) {
+    public void addQuartListener(ActionListener listener) {
         single.addActionListener(listener);
     }
 
     /**
      * Add ActionListener to the hour button.
+     *
      * @param listener ActionListener to add.
      */
     public void addHourListener(ActionListener listener) {
@@ -138,6 +142,7 @@ public class StepInterface extends JPanel {
 
     /**
      * Add ActionListener to the day button.
+     *
      * @param listener ActionListener to add.
      */
     public void addDayListener(ActionListener listener) {

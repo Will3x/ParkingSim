@@ -30,22 +30,6 @@ public class HistoGraph extends GraphView{
     }
 
     /**
-     * TODO: scale with the new max value if it gets overridden.
-     * repaint....
-     */
-    //public void update() {
-        //super.update();
-        /*HashMap stats = winnings.getWinningsStats();
-
-        for (String s : days) {
-            if (stats.get(s) > max) {
-                max = (int) stats.get(s);
-            }
-        }*/
-        //repaint();
-    //}
-
-    /**
      * Repaint every day of the histograph based on the data that it gets from the winningsController.
      * @param g Graphics instance used for the drawing.
      */

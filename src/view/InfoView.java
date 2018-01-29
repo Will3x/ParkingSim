@@ -6,11 +6,9 @@ import java.awt.*;
 public class InfoView extends JPanel {
     private JLabel adhocCars;
     private JLabel parkingpassCars;
-    private Dimension size;
 
     public InfoView(){
-        size = new Dimension(200,180);
-        setMinimumSize(size);
+        setMinimumSize(getPreferredSize());
 
         adhocCars = new JLabel();
         parkingpassCars = new JLabel();
@@ -25,9 +23,10 @@ public class InfoView extends JPanel {
     }
 
     public void drawInfo(String name, int amount){
-        if (name.equals("adhoc")){
+        if (name.equals("adHoc")){
             this.adhocCars.setText("Aantal gewone auto's " + amount);
-        } else if (name.equals("pass")){
+        }
+        if (name.equals("pass")){
             this.parkingpassCars.setText("Aantal pashouders " + amount);
         }
     }

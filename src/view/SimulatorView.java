@@ -16,6 +16,7 @@ public class SimulatorView extends JFrame{
     //Models
     private Model simulatorModel;
     private Profits winningsModel;
+    private PieChart02 pie;
 
     //Controllers
     private GraphController graphController;
@@ -37,7 +38,8 @@ public class SimulatorView extends JFrame{
     private EventView eventView;
     private view.addEventView addEventView;
     private Timer timer;
-
+    private ProfitView winningsView;
+    private PiechartView pieView;
 
     /***
      * Constructor for Simulator. Creates all Models, Views and Controllers.
@@ -45,14 +47,15 @@ public class SimulatorView extends JFrame{
     public SimulatorView() {
 
         //Winnings
-
-        ProfitView winningsView = new ProfitView();
+        winningsView = new ProfitView();
         //winningsModel = new Winnings(0.0, 0.0);
         winningsController = new ProfitController(winningsView);
 
         //Models
         simulatorModel = new Model(3, 6, 30);
 
+        //Piechart view
+        pieView = new PiechartView(this,simulatorModel, pie);
 
         //SimulatorView
         timeView = new TimeView();
@@ -107,6 +110,7 @@ public class SimulatorView extends JFrame{
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Opbrengst", histoGraph);
+        tabbedPane.addTab("Obrengst2", winningsView);
         tabbedPane.addTab("Auto's", lineGraph);
 
         JPanel pnl = new JPanel();
@@ -125,10 +129,15 @@ public class SimulatorView extends JFrame{
         westPanel.add(infoView, BorderLayout.NORTH);
         westPanel.add(eventView, BorderLayout.SOUTH);
 
+        JPanel eastPanel = new JPanel(new BorderLayout());
+        eastPanel.add(pieView, BorderLayout.NORTH);
+
         jPanel.add(carParkPanel, BorderLayout.CENTER);
         jPanel.add(timeView, BorderLayout.NORTH);
         jPanel.add(westPanel, BorderLayout.WEST);
+        jPanel.add(eastPanel, BorderLayout.EAST);
         jPanel.add(southPanel, BorderLayout.SOUTH);
+
 
         this.setTitle("Parkeer simulator");
         this.setJMenuBar(makeMenu());
@@ -215,5 +224,7 @@ public class SimulatorView extends JFrame{
         infoController.updateView();
         eventController.updateView();
         histoGraph.update();
+        winningsView.update();
+        pieView.update();
     }
 }

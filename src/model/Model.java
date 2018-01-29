@@ -28,12 +28,12 @@ public class Model
     private int weekDayArrivals= 110;       // average number of arriving AdHoc cars per hour during week
     private int weekendArrivals = 300;      // average number of arriving AdHoc cars per hour during weekend
 
-    private int weekDayReservations = 40;   // average number of PrivateReservations per hour during week
+    private int weekDayReservations = 30;   // average number of PrivateReservations per hour during week
     private int weekendReservations = 100;  // average number of PrivateReservations per hour during weekend
 
     private int passholderAmmount = 120;    // number of passholders
     private int weekDayPassArrivals= 30;    // average number of arriving PassHolder cars per hour during week
-    private int weekendPassArrivals = 50;   // average number of arriving PassHolder cars per hour during weekend
+    private int weekendPassArrivals = 40;   // average number of arriving PassHolder cars per hour during weekend
 
     private int enterSpeed = 3;             // number of cars that can enter per minute
     private int paymentSpeed = 7;           // number of cars that can pay per minute
@@ -52,8 +52,6 @@ public class Model
     private model.Time time;
     public Car[][][] cars;
     private Reservation[][][] passReservations;
-    private int parkedPassCars;
-    private int parkedCars;
 
     private HashMap<String, ArrayList<PrivateReservation>> privateReservations;
     public ArrayList<Event> events;
@@ -171,7 +169,6 @@ public class Model
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
-//        carsEntering(entranceAbboQueue);
     }
 
     /**
@@ -224,7 +221,7 @@ public class Model
     private void reserveSpots(int amount){
         for(int i = 0; i < amount; i++){
             Reservation reservation = new PassReservation();
-            Location location = getLastFreeLocation();
+            Location location = getFirstFreeLocation();
             setPassReservationAt(location, reservation);
         }
     }
@@ -414,7 +411,7 @@ public class Model
                 if ( time.getDay() == 3 && time.getHour() > 19  ) averageNumberOfCarsPerHour = weekend; //donderdagavond  (koopavond)
                 if ( time.getDay() >= 4 && time.getHour() > 19  ) averageNumberOfCarsPerHour = weekend; //vrijdagavond    (weekend begint)
                 if ( time.getDay() <= 3 && time.getHour() <= 5    ) averageNumberOfCarsPerHour = ((int) Math.floor(weekDay * 0.40));   //'s nachts minder druk
-                if ( time.getDay() >= 4 && time.getHour() <= 5    ) averageNumberOfCarsPerHour = ((int) Math.floor(weekend * 0.60));   //'s nachts minder druk
+                if ( time.getDay() >= 4 && time.getHour() <= 5    ) averageNumberOfCarsPerHour = ((int) Math.floor(weekend * 0.45));   //'s nachts minder druk
                 break;
 
         }
@@ -591,11 +588,6 @@ public class Model
         if (oldCar == null) {
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
-            if (car.getColor().equals(Color.blue)){
-                parkedPassCars++;
-            } else {
-                parkedCars++;
-            }
             numberOfOpenSpots--;
             return true;
         }
@@ -838,19 +830,19 @@ public class Model
      * The getLastFreeLocation gets the last free location in the parking lot
      * @return free location that is the last spot in parking lot
      */
-    private Location getLastFreeLocation() {
-        for (int floor = (getNumberOfFloors()-1); floor >= 0; floor--) {
-            for (int row = (getNumberOfRows()-1); row >= 0; row--) {
-                for (int place = (getNumberOfPlaces()-1); place >= 0; place--) {
-                    Location location = new Location(floor, row, place);
-                    if(getCarAt(location) == null && getPassReservationAt(location) == null){
-                        return location;
-                    }
-                }
-            }
-        }
-        return null;
-    }
+//    private Location getLastFreeLocation() {
+//        for (int floor = (getNumberOfFloors()-1); floor >= 0; floor--) {
+//            for (int row = (getNumberOfRows()-1); row >= 0; row--) {
+//                for (int place = (getNumberOfPlaces()-1); place >= 0; place--) {
+//                    Location location = new Location(floor, row, place);
+//                    if(getCarAt(location) == null && getPassReservationAt(location) == null){
+//                        return location;
+//                    }
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * The getFirstLeavingCar method iterates through the carpark and gets the first leaving car.
@@ -992,7 +984,7 @@ public class Model
         ArrayList<PrivateReservation> reservationsArray = getPrivateReservations();
         if(reservationsArray != null) {
             for (PrivateReservation reservation : reservationsArray) {
-                Location freeLocation = (ocdParking) ? getLastFreeLocation() : getRandomFreeLocation();
+                Location freeLocation = (ocdParking) ? getFirstFreeLocation() : getRandomFreeLocation();
                 setCarAt(freeLocation, reservation);
             }
         }
@@ -1026,7 +1018,7 @@ public class Model
     }
 
     /**
-     * generates the reservations for the comming week
+     * generates the reservations for the coming week
      * day 0 == monday 1 == tuesday etc etc
      * @param weekDay The average amount of reservations throughout the week
      * @param weekend The average amount of reservations in the weekend
@@ -1139,154 +1131,4 @@ public class Model
     public void setSteps(int steps) {
         this.steps = steps;
     }
-
-    /**
-     * Switches ordered parking on or off.
-     */
-    public void switchOCDParking (){
-        ocdParking = (!ocdParking);
-    }
-
-    /**
-     * raises weekday AdHoc arrivals with 10
-     */
-    public void plusWeekDayArrivals() {
-        weekDayArrivals += 10;
-    }
-
-    /**
-     * lowers weekday AdHoc arrivals with 10
-     */
-    public void minusWeekDayArrivals() {
-        if((weekDayArrivals-10) > 0) weekDayArrivals -= 10;
-    }
-
-    /**
-     * raises weekend AdHoC arrivals with 10
-     */
-    public void plusWeekendArrivals() {
-        weekendArrivals += 10;
-    }
-
-    /**
-     * lowers weekend AdHoc arrivals with 10
-     */
-    public void minusWeekendArrivals() {
-        if((weekendArrivals-10) > 0) weekendArrivals -= 10;
-    }
-
-    /**
-     * Raises weekday reservation arrivals with 10
-     */
-    public void plusWeekDayReservations() {
-        weekDayReservations += 10;
-    }
-
-    /**
-     * Lowers weekday reservation arrivals with 10
-     */
-    public void minusWeekDayReservations() {
-        if((weekDayReservations - 10) > 0){ weekDayReservations -= 10; }
-    }
-
-    /**
-     * rauses weekend reservation arrivals with 10
-     */
-    public void plusWeekendReservations() {
-        weekendReservations += 10;
-    }
-
-    /**
-     * lowers weekend reservation arrivals with 10
-     */
-    public void minusWeekendReservations() {
-        if((weekendReservations - 10) > 0){ weekendReservations -= 10; }
-    }
-
-    /**
-     * raises the weekday pass arrivals with 10
-     */
-    public void plusWeekDayPassArrivals() {
-        weekDayPassArrivals += 10;
-    }
-
-    /**
-     * lowers the weekday pass arrivals with 10
-     */
-    public void minusWeekDayPassArrivals() {
-        if((weekDayPassArrivals - 10) > 0){ weekDayPassArrivals -= 10; }
-    }
-
-    /**
-     * raises the weekend pass arrivals with 10
-     */
-    public void plusWeekendPassArrivals() {
-        weekendPassArrivals += 10;
-    }
-
-    /**
-     * lowers the weekday pass arrivals with 10
-     */
-    public void minusWeekendPassArrivals() {
-        if((weekendPassArrivals - 10) > 0) {weekendPassArrivals -= 10;}
-    }
-
-    /**
-     * raises the amount of pass holders with 10
-     */
-    public void plusPassholderAmmount() { passholderAmmount += 10; reserveSpots(10);
-    }
-
-    /**
-     * lowers the amount of passholders with 10
-     */
-    public void minusPassholderAmmount() {
-        if((passholderAmmount - 10) > 0) { passholderAmmount -= 10; removePassSpots(10); }
-    }
-
-    /**
-     * Raises the entrance queue speeds with 1 car/hour
-     */
-    public void plusEnterSpeed() {
-        enterSpeed += 1;
-    }
-
-    /**
-     * Lowers the entrance queue speeds with 1 car/hour
-     */
-    public void minusEnterSpeed() {
-        if((enterSpeed - 1) > 0) {
-            enterSpeed -= 1;
-        }
-    }
-
-    /**
-     * raises the payment queue speed with 1 car/hour
-     */
-    public void plusPaymentSpeed() {
-        paymentSpeed += 1;
-    }
-
-    /**
-     * lowers the payment queue speed with 1 car/hour
-     */
-    public void minusPaymentSpeed() {
-        if ((paymentSpeed - 1) > 0) { paymentSpeed -= 1; }
-    }
-
-    /**
-     * raises the exit queue speed with 1 car/hour
-     */
-    public void plusExitSpeed() {
-        exitSpeed += 1;
-    }
-
-    /**
-     * lowers the exit queue speed with 1 car/hour
-     */
-    public void minusExitSpeed() {
-        if((exitSpeed - 1) > 0 ) { exitSpeed -= 1; }
-    }
-
-
 }
