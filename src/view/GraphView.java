@@ -17,7 +17,7 @@ public class GraphView extends View {
      * @return dimensions of the preferred size.
      */
     public Dimension getPreferredSize() {
-        return new Dimension(800, 200);
+        return new Dimension(800, 300);
     }
 
 }

@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 public class StepController {
     private StepInterface stepview;
     private Model model;
+    private boolean paused = false;
+    private int temp = 0;
 
     public StepController(final StepInterface stepview, Model model){
         this.stepview = stepview;
@@ -20,7 +22,11 @@ public class StepController {
         stepview.addStartListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.setSteps(10080);
+                if (paused){
+                    model.setSteps(temp);
+                } else {
+                    model.setSteps(10078);
+                }
                 System.out.println(model.getSteps());
             }
         });
@@ -28,7 +34,10 @@ public class StepController {
         stepview.addStopListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.setSteps(0);/*
+                temp = model.getSteps();
+                model.setSteps(0);
+                paused = true;
+                /*
                 timer.cancel();
                 stepInterface.disableStop();*/
             }
@@ -37,7 +46,7 @@ public class StepController {
         stepview.addSingleListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.setSteps(1);
+                model.setSteps(15);
             }
         });
 

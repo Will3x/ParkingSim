@@ -3,9 +3,9 @@ package model;
 import java.util.HashMap;
 
 public class Profits {
-    private double winnings;
-    private double parkedWinnings;
-    private HashMap winningsStats;
+    private double profits;
+    private double parkedProfits;
+    private HashMap profitStats;
     private Time time;
 
     private static Profits instance = new Profits(0.0, 0.0);
@@ -16,11 +16,11 @@ public class Profits {
      * @param winnings - winnings
      */
     public Profits(double winnings, double parkedWinnings) {
-        this.winnings = winnings;
-        this.parkedWinnings = parkedWinnings;
+        this.profits = winnings;
+        this.parkedProfits = parkedWinnings;
         this.time = Time.getInstance();
 
-        winningsStats = new HashMap();
+        profitStats = new HashMap();
         resetStats();
     }
 
@@ -39,10 +39,10 @@ public class Profits {
             resetStats();
         }
         String day = time.getDayString();
-        parkedWinnings = roundToTwoDecimals(parkedWinnings - addition);
+        parkedProfits = roundToTwoDecimals(parkedProfits - addition);
 
-        winnings = roundToTwoDecimals(winnings + addition);
-        winningsStats.put(day, roundToTwoDecimals((double) winningsStats.get(day) + addition));
+        profits = roundToTwoDecimals(profits + addition);
+        profitStats.put(day, roundToTwoDecimals((double) profitStats.get(day) + addition));
     }
 
     /**
@@ -50,20 +50,22 @@ public class Profits {
      * @param addition - winnings to be added
      */
     public void addParkedWinnings(double addition) {
-        parkedWinnings = roundToTwoDecimals(parkedWinnings + addition);
+        parkedProfits = roundToTwoDecimals(parkedProfits + addition);
     }
 
     /**
      * Resets stats.
      */
     private void resetStats() {
-        winningsStats.put("Monday",    new Double(0.0));
-        winningsStats.put("Tuesday",   new Double(0.0));
-        winningsStats.put("Wednesday", new Double(0.0));
-        winningsStats.put("Thursday",  new Double(0.0));
-        winningsStats.put("Friday",    new Double(0.0));
-        winningsStats.put("Saturday",  new Double(0.0));
-        winningsStats.put("Sunday",    new Double(0.0));
+        profitStats.put("Monday",    new Double(0.0));
+        profitStats.put("Tuesday",   new Double(0.0));
+        profitStats.put("Wednesday", new Double(0.0));
+        profitStats.put("Thursday",  new Double(0.0));
+        profitStats.put("Friday",    new Double(0.0));
+        profitStats.put("Saturday",  new Double(0.0));
+        profitStats.put("Sunday",    new Double(0.0));
+        profitStats.put("Total",     new Double(0.0));
+
     }
 
     /**
@@ -80,7 +82,7 @@ public class Profits {
      * @param winnings - winnings to be set
      */
     public void setWinnings(double winnings) {
-        this.winnings = winnings;
+        this.profits = winnings;
     }
 
     /**
@@ -88,7 +90,7 @@ public class Profits {
      * @return Returns the winnings
      */
     public double getWinnings() {
-        return winnings;
+        return profits;
     }
 
     /**
@@ -96,7 +98,7 @@ public class Profits {
      * @return Returns parked winnings
      */
     public double getParkedWinnings() {
-        return parkedWinnings;
+        return parkedProfits;
     }
 
     /**
@@ -104,6 +106,6 @@ public class Profits {
      * @return Return HashMap with winning stats
      */
     public HashMap getWinningsStats() {
-        return winningsStats;
+        return profitStats;
     }
 }

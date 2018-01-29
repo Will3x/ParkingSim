@@ -58,8 +58,8 @@ public class SimulatorView extends JFrame{
         timeView = new TimeView();
         carParkView = new CarParkView(this,simulatorModel);
 
-        histoGraph = new HistoGraph(800, 200, 10000, 0, winningsController);
-        lineGraph = new LineGraph(800, 200, simulatorModel.getNumberOfPlaces() * simulatorModel.getNumberOfRows() * simulatorModel.getNumberOfFloors());
+        histoGraph = new HistoGraph(800, 300, 10000, 0, winningsController);
+        lineGraph = new LineGraph(800, 300, simulatorModel.getNumberOfPlaces() * simulatorModel.getNumberOfRows() * simulatorModel.getNumberOfFloors());
         stepInterface = new StepInterface();
         infoView = new InfoView();
         eventView = new EventView();
@@ -110,7 +110,7 @@ public class SimulatorView extends JFrame{
         tabbedPane.addTab("Auto's", lineGraph);
 
         JPanel pnl = new JPanel();
-        pnl.setPreferredSize(new Dimension(lineGraph.getWidth(), lineGraph.getHeight()));
+        pnl.setPreferredSize(new Dimension(lineGraph.getWidth(), lineGraph.getHeight()+50));
         pnl.add(tabbedPane);
         JPanel carParkPanel = new JPanel();
         carParkPanel.setLayout(new FlowLayout(1));
@@ -130,9 +130,8 @@ public class SimulatorView extends JFrame{
         jPanel.add(westPanel, BorderLayout.WEST);
         jPanel.add(southPanel, BorderLayout.SOUTH);
 
-
+        this.setTitle("Parkeer simulator");
         this.setJMenuBar(makeMenu());
-
         this.add(jPanel);
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

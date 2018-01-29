@@ -25,7 +25,7 @@ public class Model
     private CarQueue exitCarQueue;
 
     //Simulator default stats
-    private int weekDayArrivals= 150;       // average number of arriving AdHoc cars per hour during week
+    private int weekDayArrivals= 120;       // average number of arriving AdHoc cars per hour during week
     private int weekendArrivals = 250;      // average number of arriving AdHoc cars per hour during weekend
 
 
@@ -33,7 +33,7 @@ public class Model
     private int weekendReservations = 100;  // average number of PrivateReservations per hour during weekend
 
     private int passholderAmmount = 120;    // number of passholders
-    private int weekDayPassArrivals= 40;    // average number of arriving PassHolder cars per hour during week
+    private int weekDayPassArrivals= 30;    // average number of arriving PassHolder cars per hour during week
     private int weekendPassArrivals = 25;   // average number of arriving PassHolder cars per hour during weekend
 
     private int enterSpeed = 3;             // number of cars that can enter per minute
@@ -42,6 +42,7 @@ public class Model
 
 
     private int steps = 0;
+    private int currentSteps = 0;
 
     /*
         private int day = 0;
@@ -313,7 +314,7 @@ public class Model
                 freeLocation = (ocdParking) ? getFirstFreeLocation() : getRandomFreeLocation();
             } else
             if ( car instanceof ParkingPassCar ){
-                freeLocation = (ocdParking) ? getFirstReservedPassLocation() : getRandomReservedPassLocation();
+                freeLocation = (ocdParking) ? getFirstFreePassLocation() : getRandomReservedPassLocation();
             } else
             if ( car instanceof ReservationCar ){
                 freeLocation = getAssignedReservedLocation((ReservationCar) car);
@@ -385,26 +386,26 @@ public class Model
                 double formula = ((-0.069444*Math.pow(time.getHour(),2))+(2.083333*time.getHour()) - 5.625) * 10;
                 // Get the average number of cars that arrive per hour.
 
-                if (time.getDay() == 0){              //maandag
+                if (time.getDay() == 0){              // Maandag
                     averageNumberOfCarsPerHour = (int) Math.floor(weekDay/100*formula);
                 }
-                if (time.getDay() == 1){
+                if (time.getDay() == 1){ // Dinsdag
                     averageNumberOfCarsPerHour = (int) Math.floor(weekDay/100*formula);
                 }
-                if (time.getDay() == 2){
+                if (time.getDay() == 2){ // Woensdag
                     averageNumberOfCarsPerHour = (int) Math.floor(weekDay/100*formula);
                 }
-                if (time.getDay() == 3){
+                if (time.getDay() == 3){ // Donderdag
                     if(time.getHour() <= 18) {
-                        averageNumberOfCarsPerHour = (int) Math.floor(weekDay / 100 * formula); //KOOP AVOND
-                    } else {
+                        averageNumberOfCarsPerHour = (int) Math.floor(weekDay / 100 * formula);
+                    } else { // Koop avond
                         averageNumberOfCarsPerHour = (int) Math.floor(weekend / 100 * formula);
                     }
                 }
-                if (time.getDay() == 4){
+                if (time.getDay() == 4){ // Vrijdag
                     if(time.getHour() <= 18) {
-                        averageNumberOfCarsPerHour = (int) Math.floor(weekDay / 100 * formula); //WEEKEND START
-                    } else {
+                        averageNumberOfCarsPerHour = (int) Math.floor(weekDay / 100 * formula);
+                    } else { // Vrijdag avond
                         averageNumberOfCarsPerHour = (int) Math.floor(weekend / 100 * formula);
                     }
                 }
@@ -420,8 +421,8 @@ public class Model
                 if ( time.getDay() >= 4 && time.getDay() <= 6   ) averageNumberOfCarsPerHour = weekend; //weekend
                 if ( time.getDay() == 3 && time.getHour() > 19  ) averageNumberOfCarsPerHour = weekend; //donderdagavond  (koopavond)
                 if ( time.getDay() >= 4 && time.getHour() > 19  ) averageNumberOfCarsPerHour = weekend; //vrijdagavond    (weekend begint)
-                if ( time.getDay() <= 3 && time.getHour() <= 5    ) averageNumberOfCarsPerHour = ((int) Math.floor(weekDay * 0.10));   //'s nachts minder druk
-                if ( time.getDay() >= 4 && time.getHour() <= 5    ) averageNumberOfCarsPerHour = ((int) Math.floor(weekend * 0.10));   //'s nachts minder druk
+                if ( time.getDay() <= 3 && time.getHour() <= 5    ) averageNumberOfCarsPerHour = ((int) Math.floor(weekDay * 0.40));   //'s nachts minder druk
+                if ( time.getDay() >= 4 && time.getHour() <= 5    ) averageNumberOfCarsPerHour = ((int) Math.floor(weekend * 0.60));   //'s nachts minder druk
                 break;
 
         }
@@ -688,10 +689,10 @@ public class Model
             return null;
         }
 
-    public Location getFirstFreeAbboLocation() {
+    public Location getFirstFreePassLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row += 2) {
-                for (int place = 0; place < 5; place++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
 
                     Random rand = new Random();
                     int n = rand.nextInt(4);

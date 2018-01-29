@@ -2,8 +2,6 @@ package model;
 
 import view.SettingsView;
 
-import java.util.concurrent.TimeUnit;
-
 public class Time {
 
     private Model model;
@@ -32,7 +30,7 @@ public class Time {
     }
 
     private int tickPause = 100;
-    private int steps = 10000;
+    private int steps = 0;
 
     /**
      * The time class is a singleton. This function returns the instance of time class.

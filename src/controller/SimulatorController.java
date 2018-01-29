@@ -154,7 +154,7 @@ public class SimulatorController {
                     if(car instanceof PrivateReservation && ((PrivateReservation) car).getCar() != null){
                         car = ((PrivateReservation) car).getCar();
                     }
-                    Color color = new Color(242, 111, 111);
+                    Color color = new Color(255, 255, 255  );
                     if (car != null) color = car.getColor();
 
                     view.drawPlace(graphics, location, color);
