@@ -8,7 +8,6 @@ public class Time {
     private int hour = 0;
     private int minute = 0;
     private boolean newWeek = false;
-    private boolean pause = false;
 
     private static Time instance = new Time();
 

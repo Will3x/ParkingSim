@@ -1,6 +1,7 @@
 package controller;
 
 import model.Event;
+import model.EventKoopavond;
 import model.Model;
 import view.addEventView;
 

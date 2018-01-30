@@ -16,6 +16,6 @@ public class TimeController {
     public void updateTime() {
         time = Time.getInstance();
         time.advanceTime();
-        view.setLabel(time.getTimeString());
+        view.setTimeLabel(time.getTimeString());
     }
 }

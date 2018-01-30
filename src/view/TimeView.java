@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class TimeView extends JPanel {
     private JLabel label;
-
     /**
      * JLabel that shows the current timestamp in the simulator.
      */
@@ -20,7 +19,7 @@ public class TimeView extends JPanel {
      * Update the label
      * @param timeString New timestamp.
      */
-    public void setLabel(String timeString) {
+    public void setTimeLabel(String timeString) {
 //        label.setLocation(400,20);
         label.setText(timeString);
     }

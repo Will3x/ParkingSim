@@ -62,7 +62,7 @@ public class SimulatorView extends JFrame{
         timeView = new TimeView();
         carParkView = new CarParkView(this,simulatorModel);
 
-        histoGraph = new HistoGraph(870, 350, 10000, 0, winningsController);
+        histoGraph = new HistoGraph(870, 350, 15000, 0, winningsController);
         lineGraph = new LineGraph(870, 350, simulatorModel.getNumberOfPlaces() * simulatorModel.getNumberOfRows() * simulatorModel.getNumberOfFloors());
         stepInterface = new StepInterface();
         infoView = new InfoView();
@@ -229,5 +229,6 @@ public class SimulatorView extends JFrame{
         pieView.update();
         winningsController.updateView();
         carParkView.updateView();
+
     }
 }

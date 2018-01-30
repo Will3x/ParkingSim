@@ -10,6 +10,8 @@ import java.util.Queue;
 public class SimulatorController {
     private CarParkView view;
     private Model model;
+    private Graphics graphics;
+    private Graphics graphics2;
 
     /**
      * Constructor for SimulatorController. This class controls the info of the main garage simulator.
@@ -66,9 +68,9 @@ public class SimulatorController {
             view.carParkImage = view.createImage(view.size.width, view.size.height);
         }
 
-        Graphics graphics = view.carParkImage.getGraphics();
+        graphics = view.carParkImage.getGraphics();
         graphics.clearRect(0,0, view.carParkImage.getWidth(null), view.carParkImage.getHeight(null));
-        updateCarPark(graphics);
+        view.updateView();
 
         updateEntrance(graphics, getEntranceCarQueue());
         updateEntrance(graphics, getEntrancePassQueue());

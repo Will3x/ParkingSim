@@ -9,7 +9,6 @@ public class GraphController {
     Model model;
     private HistoGraph histoGraph;
     private LineGraph lineGraph;
-    private JFrame jFrame;
 
 
     public GraphController(Model model, HistoGraph histoGraph, LineGraph lineGraph){

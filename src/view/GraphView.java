@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class GraphView extends View {
     protected int max;
-    protected int cars;
 
 
     GraphView(int width, int height, int max) {

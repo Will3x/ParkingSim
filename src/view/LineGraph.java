@@ -66,7 +66,7 @@ public class LineGraph extends GraphView {
             else if (values[i] == pass)
                 lastValuePass = drawStep(graphG, pass, Color.BLUE, lastValuePass);
             else if (values[i] == reserve)
-                lastValueReserve = drawStep(graphG, reserve, Color.GREEN, lastValueReserve);
+                lastValueReserve = drawStep(graphG, reserve, Color.ORANGE, lastValueReserve);
         }
     }
 

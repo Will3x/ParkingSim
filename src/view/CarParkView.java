@@ -32,10 +32,6 @@ public class CarParkView extends View {
         return new Dimension(800, 470);
     }
 
-    public void tickDays(){
-        daysPassed.setText(time.getTimeString());
-    }
-
     /**
      * Overriden. The car park view component needs to be redisplayed. Copy the
      * internal image to screen.
@@ -114,5 +110,4 @@ public class CarParkView extends View {
             graphics.fillRect(x + queuePlace * m, y+5, 20 - 1, 10 - 1);
         }
     }
-
 }

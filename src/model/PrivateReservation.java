@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class PrivateReservation extends Car {
-    private static final Color COLOR=new Color(244, 203, 0);
+    private static Color COLOR=new Color(244, 203, 0);
     private int arrivalDay;
     private int arrivalHour;
     private int arrivalMinute;
@@ -24,14 +24,15 @@ public class PrivateReservation extends Car {
         this.minutesStaying = minutesStaying;
 
         //calculate random arrival time difference
-        int difference = ((random.nextInt(100)));
+        int difference = ((random.nextInt(40)));
         int rand = random.nextInt(5);
 
-        if (difference >= 75) { //car won't arrive
+        if (difference >= 30) { //car won't arrive
             willArrive = false;
+            this.minutesStaying = 45;
         } else if (rand >= 1){
             actualArrival += difference; //car will arrive difference minutes later
-        } else if(rand == 0){
+        } else if(rand <= 0){
             actualArrival -= difference; //car will arrive difference minutes earlier
         } else {
             actualArrival = 0; // op tijd
@@ -44,10 +45,6 @@ public class PrivateReservation extends Car {
      */
     public Color getColor(){
         return COLOR;
-    }
-
-    public static void setCOLOR(Color COLOR) {
-        PrivateReservation.COLOR = COLOR;
     }
 
     /**
@@ -89,6 +86,7 @@ public class PrivateReservation extends Car {
     boolean getWillArive() {
         return willArrive;
     }
+
 
     /**
      * Gets actual arrival
