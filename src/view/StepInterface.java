@@ -151,7 +151,7 @@ public class StepInterface extends JPanel {
      *
      * @param listener ActionListener to add.
      */
-    public void addStopListener(ActionListener listener) {
+    public void addPauseListener(ActionListener listener) {
         pause.addActionListener(listener);
     }
 

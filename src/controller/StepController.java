@@ -29,12 +29,12 @@ public class StepController {
         stepview.addStartListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sound.playSound("click.wav");
                 if (paused){
                     model.setSteps(temp);
                 } else {
                     model.setSteps(10078);
                 }
-                sound.playSound("click.wav");
                 stepview.getStart().setVisible(false);
                 stepview.getCont().setVisible(true);
                 stepview.enableResetButton();
@@ -42,13 +42,13 @@ public class StepController {
             }
         });
 
-        stepview.addStopListener(new ActionListener() {
+        stepview.addPauseListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sound.playSound("click.wav");
                 temp = model.getSteps();
                 model.setSteps(0);
                 paused = true;
-                sound.playSound("click.wav");
             }
         });
 

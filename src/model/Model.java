@@ -39,7 +39,6 @@ public class Model
     private int paymentSpeed = 7;           // number of cars that can pay per minute
     private int exitSpeed = 5;              // number of cars that can leave per minute
 
-
     private int steps = 0;
     private Profits winningsModel;
 
@@ -49,7 +48,7 @@ public class Model
     private int numberOfOpenSpots;
     private int numberOfOpenPassSpots;
 
-    private model.Time time;
+    private Time time;
     public Car[][][] cars;
     private Reservation[][][] passReservations;
 

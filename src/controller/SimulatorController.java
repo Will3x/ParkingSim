@@ -1,6 +1,5 @@
 package controller;
 
-
 import model.*;
 import view.CarParkView;
 import model.Car;
@@ -20,52 +19,9 @@ public class SimulatorController {
     public SimulatorController(CarParkView view, Model model) {
         this.view = view;
         this.model = model;
-        /*stepInterface.addStartListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                simulate(10000);
-            }
-        });
-
-        stepInterface.addStopListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timer.cancel();
-                stepInterface.disableStop();
-            }
-        });
-
-        stepInterface.addSingleListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                simulate(1);
-            }
-        });
-
-        stepInterface.addHourListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                simulate(60);
-            }
-        });
-
-        stepInterface.addDayListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                simulate(1440);
-            }
-        });*/
     }
-/*
-    public void updateViews(){
-        // Update the car park view.
-        updateCarParkView();
-    }*/
 
-    /**
-     * Gets the number of floors
-     * @return Returns the number of floors.
-     */
+    /**Get number of floors*/
     private int getNumberOfFloors() {
         return model.getNumberOfFloors();
     }

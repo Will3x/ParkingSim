@@ -62,8 +62,8 @@ public class SimulatorView extends JFrame{
         timeView = new TimeView();
         carParkView = new CarParkView(this,simulatorModel);
 
-        histoGraph = new HistoGraph(890, 350, 10000, 0, winningsController);
-        lineGraph = new LineGraph(890, 350, simulatorModel.getNumberOfPlaces() * simulatorModel.getNumberOfRows() * simulatorModel.getNumberOfFloors());
+        histoGraph = new HistoGraph(870, 350, 10000, 0, winningsController);
+        lineGraph = new LineGraph(870, 350, simulatorModel.getNumberOfPlaces() * simulatorModel.getNumberOfRows() * simulatorModel.getNumberOfFloors());
         stepInterface = new StepInterface();
         infoView = new InfoView();
         eventView = new EventView();
@@ -113,7 +113,7 @@ public class SimulatorView extends JFrame{
         tabbedPane.addTab("Opbrengst", histoGraph);
         tabbedPane.addTab("Obrengst2", winningsView);
         tabbedPane.addTab("Auto's", lineGraph);
-        tabbedPane.setSize(new Dimension(900,500));
+        tabbedPane.setPreferredSize(new Dimension(830,380));
 
         JPanel pnl = new JPanel();
         pnl.setPreferredSize(new Dimension(lineGraph.getWidth(), lineGraph.getHeight()+50));

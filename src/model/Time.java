@@ -1,12 +1,9 @@
 package model;
 
-import view.SettingsView;
-
 public class Time {
 
     private Model model;
     private String[] dayStrings;
-    private SettingsView setView;
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
