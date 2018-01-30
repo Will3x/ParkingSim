@@ -51,7 +51,7 @@ public class Profits {
     /**
      * Resets stats.
      */
-    private void resetStats() {
+    public void resetStats() {
         profitStats.put("Monday",    new Double(0.0));
         profitStats.put("Tuesday",   new Double(0.0));
         profitStats.put("Wednesday", new Double(0.0));
@@ -59,7 +59,6 @@ public class Profits {
         profitStats.put("Friday",    new Double(0.0));
         profitStats.put("Saturday",  new Double(0.0));
         profitStats.put("Sunday",    new Double(0.0));
-        profitStats.put("Total",     new Double(0.0));
 
     }
 

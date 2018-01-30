@@ -5,6 +5,7 @@ import controller.*;
 import model.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,8 +62,8 @@ public class SimulatorView extends JFrame{
         timeView = new TimeView();
         carParkView = new CarParkView(this,simulatorModel);
 
-        histoGraph = new HistoGraph(800, 323, 10000, 0, winningsController);
-        lineGraph = new LineGraph(800, 300, simulatorModel.getNumberOfPlaces() * simulatorModel.getNumberOfRows() * simulatorModel.getNumberOfFloors());
+        histoGraph = new HistoGraph(890, 350, 10000, 0, winningsController);
+        lineGraph = new LineGraph(890, 350, simulatorModel.getNumberOfPlaces() * simulatorModel.getNumberOfRows() * simulatorModel.getNumberOfFloors());
         stepInterface = new StepInterface();
         infoView = new InfoView();
         eventView = new EventView();
@@ -112,13 +113,12 @@ public class SimulatorView extends JFrame{
         tabbedPane.addTab("Opbrengst", histoGraph);
         tabbedPane.addTab("Obrengst2", winningsView);
         tabbedPane.addTab("Auto's", lineGraph);
+        tabbedPane.setSize(new Dimension(900,500));
 
         JPanel pnl = new JPanel();
         pnl.setPreferredSize(new Dimension(lineGraph.getWidth(), lineGraph.getHeight()+50));
         pnl.add(tabbedPane);
         JPanel carParkPanel = new JPanel();
-        carParkPanel.setLayout(new FlowLayout(1));
-        carParkPanel.add(carParkView);
 
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.PAGE_AXIS));
@@ -126,17 +126,18 @@ public class SimulatorView extends JFrame{
         southPanel.add(pnl);
 
         JPanel westPanel = new JPanel(new BorderLayout());
-        westPanel.add(infoView, BorderLayout.NORTH);
-        westPanel.add(eventView, BorderLayout.SOUTH);
+        westPanel.add(timeView, BorderLayout.NORTH);
+        westPanel.add(carParkView, BorderLayout.CENTER);
+        westPanel.add(southPanel,BorderLayout.SOUTH);
 
         JPanel eastPanel = new JPanel(new BorderLayout());
         eastPanel.add(pieView, BorderLayout.NORTH);
+        eastPanel.add(infoView, BorderLayout.CENTER);
+        eastPanel.add(eventView,BorderLayout.SOUTH);
 
         jPanel.add(carParkPanel, BorderLayout.CENTER);
-        jPanel.add(timeView, BorderLayout.NORTH);
         jPanel.add(westPanel, BorderLayout.WEST);
         jPanel.add(eastPanel, BorderLayout.EAST);
-        jPanel.add(southPanel, BorderLayout.SOUTH);
 
 
         this.setTitle("Parkeer simulator");
@@ -222,9 +223,10 @@ public class SimulatorView extends JFrame{
         simulatorController.updateCarParkView();
         graphController.updateView();
         infoController.updateView();
-        eventController.updateView();
+//        eventController.updateView();
         histoGraph.update();
         winningsView.update();
         pieView.update();
+        winningsController.updateView();
     }
 }

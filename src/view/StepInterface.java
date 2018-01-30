@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 
 public class StepInterface extends JPanel {
     private JButton start;
-    private JButton stop;
+    private JButton cont;
+    private JButton pause;
+    private JButton reset;
     private JButton single;
     private JButton hour;
     private JButton day;
@@ -17,10 +19,12 @@ public class StepInterface extends JPanel {
      */
     public StepInterface() {
         addStartButton();
-        addStopButton();
+        addContButton();
+        addPauseButton();
         addSingleButton();
         addHourButton();
         addDayButton();
+        addResetButton();
     }
 
     /**
@@ -39,20 +43,48 @@ public class StepInterface extends JPanel {
         add(start);
     }
 
+    private void addContButton() {
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Images/Continue.png"));
+        cont = new JButton(icon);
+        cont.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        cont.setMaximumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        cont.setMinimumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        cont.setBorderPainted(false);
+        cont.setContentAreaFilled(false);
+        cont.setFocusPainted(false);
+        cont.setOpaque(false);
+        cont.setVisible(false);
+        add(cont);
+    }
+
     /**
-     * Set the styling of the stop button.
+     * Set the styling of the pause button.
      */
-    private void addStopButton() {
+    private void addPauseButton() {
         ImageIcon icon = new ImageIcon(getClass().getResource("/Images/Pause.png"));
-        stop = new JButton(icon);
-        stop.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-        stop.setMaximumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-        stop.setMinimumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-        stop.setBorderPainted(false);
-        stop.setContentAreaFilled(false);
-        stop.setFocusPainted(false);
-        stop.setOpaque(false);
-        add(stop);
+        pause = new JButton(icon);
+        pause.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        pause.setMaximumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        pause.setMinimumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        pause.setBorderPainted(false);
+        pause.setContentAreaFilled(false);
+        pause.setFocusPainted(false);
+        pause.setOpaque(false);
+        add(pause);
+    }
+
+    private void addResetButton() {
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Images/Reset.png"));
+        reset = new JButton(icon);
+        reset.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        reset.setMaximumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        reset.setMinimumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        reset.setBorderPainted(false);
+        reset.setContentAreaFilled(false);
+        reset.setFocusPainted(false);
+        reset.setOpaque(false);
+        reset.setEnabled(false);
+        add(reset);
     }
 
     /**
@@ -111,15 +143,20 @@ public class StepInterface extends JPanel {
      */
     public void addStartListener(ActionListener listener) {
         start.addActionListener(listener);
+        cont.addActionListener(listener);
     }
 
     /**
-     * Add ActionListener to the stop button.
+     * Add ActionListener to the pause button.
      *
      * @param listener ActionListener to add.
      */
     public void addStopListener(ActionListener listener) {
-        stop.addActionListener(listener);
+        pause.addActionListener(listener);
+    }
+
+    public void addResetListener(ActionListener listener) {
+        reset.addActionListener(listener);
     }
 
     /**
@@ -154,7 +191,8 @@ public class StepInterface extends JPanel {
      */
     public void disableStop() {
         start.setEnabled(true);
-        stop.setEnabled(false);
+        cont.setEnabled(true);
+        pause.setEnabled(false);
         single.setEnabled(true);
         hour.setEnabled(true);
         day.setEnabled(true);
@@ -165,9 +203,30 @@ public class StepInterface extends JPanel {
      */
     public void disableStepButtons() {
         start.setEnabled(false);
-        stop.setEnabled(true);
+        cont.setEnabled(false);
+        pause.setEnabled(true);
         single.setEnabled(false);
         hour.setEnabled(false);
         day.setEnabled(false);
+    }
+
+    public void disableResetButton(){
+        reset.setEnabled(false);
+    }
+
+    public void enableResetButton(){
+        reset.setEnabled(true);
+    }
+
+    public JButton getStart() {
+        return start;
+    }
+
+    public JButton getCont() {
+        return cont;
+    }
+
+    public JButton getReset() {
+        return reset;
     }
 }

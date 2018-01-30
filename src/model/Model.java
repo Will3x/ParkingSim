@@ -11,7 +11,7 @@ public class Model
 {
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
-    private static final String ABBO = "3";
+    private static final String RSVC = "3";
 
     private boolean reservationsGenerated;  // True after generateWeeklyPrivateReservations, False after resetPrivateReservations
 
@@ -130,6 +130,7 @@ public class Model
             }
         }
         return reservation;
+
     }
 
     /**
@@ -466,7 +467,7 @@ public class Model
                     winningsModel.addParkedWinnings(car.getPayment());
                 }
                 break;
-            case ABBO:
+            case RSVC:
                 for (int i = 0; i < numberOfCars; i++) {
                     entrancePassQueue.addCar(new ReservationCar());
                 }
@@ -646,6 +647,7 @@ public class Model
         numberOfOpenSpots++;
         return car;
     }
+
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -1006,8 +1008,7 @@ public class Model
      * @param weekend The average amount of reservations in the weekend
      */
     private void generateWeeklyPrivateReservations(int weekDay, int weekend) {
-        Random rand = new Random();
-        double averageNumberOfCarsPerHour = 0;
+        double averageNumberOfCarsPerHour = 1;
 
         // Get the average number of cars that arrive per hour during week.
         for(int day = 0; day < 4; day++) {
@@ -1015,11 +1016,9 @@ public class Model
                 averageNumberOfCarsPerHour = weekDay;
                 int eventLength = 23-hour;
                 if (hour < 18){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, eventLength) ;}
-                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.3, day, hour, eventLength) ;}
-                if (hour == 19){createReservations(averageNumberOfCarsPerHour*0.6, day, hour, eventLength) ;}
-                if (hour == 20){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, eventLength) ;}
-                if (hour == 21){createReservations(averageNumberOfCarsPerHour*0.5, day, hour, eventLength) ;}
-                if (hour == 22){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, eventLength) ;}
+                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, eventLength) ;}
+                if (hour == 19){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, eventLength) ;}
+                if (hour > 19 && hour < 23){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, eventLength) ;}
             }
         }
 

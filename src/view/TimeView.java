@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class TimeView extends JPanel {
@@ -11,6 +12,7 @@ public class TimeView extends JPanel {
      */
     public TimeView() {
         label = new JLabel(" ");
+        setPreferredSize(new Dimension(200,50));
         add(label);
     }
 
@@ -21,4 +23,5 @@ public class TimeView extends JPanel {
     public void setLabel(String timeString) {
         label.setText(timeString);
     }
+
 }

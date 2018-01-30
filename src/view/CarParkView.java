@@ -29,7 +29,7 @@ public class CarParkView extends View {
      * Overridden. Tell the GUI manager how big we would like to be.
      */
     public Dimension getPreferredSize() {
-        return new Dimension(870, 500);
+        return new Dimension(800, 470);
     }
 
     public void tickDays(){
@@ -88,23 +88,23 @@ public class CarParkView extends View {
         graphics.setColor(color);
         graphics.fillRect(
                 location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
-                60 + location.getPlace() * 10,
+                20 + location.getPlace() * 10,
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
 
     public void drawQueues(Graphics graphics, String name, int queuePlace, Color color, int queueAmount){
-        int x = 75 - 29;
+        int x = 75;
         int y = 370;
         int m = 20;
         switch (name) {
-            case "car": y = 390;
+            case "car": y = 350;
                 break;
-            case "pass": y = 420;
+            case "pass": y = 380;
                 break;
-            case "payment": y = 450;
+            case "payment": y = 410;
                 break;
-            case "exit": y = 480;
+            case "exit": y = 440;
         }
         graphics.setColor(Color.BLACK);
         String drawString = queueAmount + " cars in " + name + " queue";

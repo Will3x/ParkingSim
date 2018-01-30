@@ -19,7 +19,7 @@ public class InfoView extends JPanel {
 
 
     public Dimension getPreferredSize() {
-        return new Dimension(200,180);
+        return new Dimension(200,50);
     }
 
     public void drawInfo(String name, int amount){

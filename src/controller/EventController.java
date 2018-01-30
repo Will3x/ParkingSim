@@ -14,13 +14,13 @@ public class EventController {
     }
 
     public void updateView(){
-        view.removeAll();
+            view.removeAll();
 
-        view.addHeader();
-        for (Event event : model.events){
-            view.drawEvent(event);
-        }
-        view.repaint();
-        view.revalidate();
+            view.addHeader();
+            for (Event event : model.events) {
+                view.drawEvent(event);
+            }
+            view.repaint();
+            view.revalidate();
     }
 }

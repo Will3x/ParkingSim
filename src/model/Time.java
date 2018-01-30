@@ -134,7 +134,17 @@ public class Time {
         this.newWeek = newWeek;
     }
 
-    public void setSteps(int steps){
-        this.steps = steps;
+    public void setDay(int day) {
+        this.day = day;
     }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+
 }

@@ -7,7 +7,7 @@ public class EventView extends View {
     private Dimension size;
 
     public EventView() {
-        size = new Dimension(200, 180);
+        size = new Dimension(300, 180);
         setMinimumSize(size);
         GridLayout layout = new GridLayout(10, 7);
         setLayout(layout);
