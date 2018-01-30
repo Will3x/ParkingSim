@@ -8,7 +8,7 @@ public class ParkingPassCar extends Car {
 
     public ParkingPassCar() {
         Random random = new Random();
-        int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
+        int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
         payment = Math.ceil(stayMinutes / 60 * 1.00);
         this.setMinutesLeft(stayMinutes);
         this.setHasToPay(false);

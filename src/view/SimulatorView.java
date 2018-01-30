@@ -111,7 +111,7 @@ public class SimulatorView extends JFrame{
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Opbrengst", histoGraph);
-        tabbedPane.addTab("Obrengst2", winningsView);
+        tabbedPane.addTab("Omzet", winningsView);
         tabbedPane.addTab("Auto's", lineGraph);
         tabbedPane.setPreferredSize(new Dimension(830,380));
 
@@ -220,7 +220,7 @@ public class SimulatorView extends JFrame{
      * Updates the views.
      */
     private void updateViews() {
-        simulatorController.updateCarParkView();
+//        simulatorController.updateCarParkView();
         graphController.updateView();
         infoController.updateView();
 //        eventController.updateView();
@@ -228,5 +228,6 @@ public class SimulatorView extends JFrame{
         winningsView.update();
         pieView.update();
         winningsController.updateView();
+        carParkView.updateView();
     }
 }

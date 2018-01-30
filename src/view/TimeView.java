@@ -21,6 +21,7 @@ public class TimeView extends JPanel {
      * @param timeString New timestamp.
      */
     public void setLabel(String timeString) {
+//        label.setLocation(400,20);
         label.setText(timeString);
     }
 

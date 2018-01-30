@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class PrivateReservation extends Car {
-    private static final Color COLOR=new Color(69, 244, 66);
+    private static final Color COLOR=new Color(244, 203, 0);
     private int arrivalDay;
     private int arrivalHour;
     private int arrivalMinute;
@@ -15,13 +15,6 @@ public class PrivateReservation extends Car {
     private ReservationCar car;
     private int minutesStaying;
 
-    /**
-     * Constructor for PrivateReservation. Sets the info of reservation
-     * @param arrivalDay - day of reservation
-     * @param arrivalHour - hour of reservation
-     * @param arrivalMinute - minute of reservation
-     * @param minutesStaying -  minutes of staying
-     */
     PrivateReservation(int arrivalDay, int arrivalHour, int arrivalMinute, int minutesStaying) {
         Random random = new Random();
         this.arrivalDay = arrivalDay;
@@ -31,19 +24,18 @@ public class PrivateReservation extends Car {
         this.minutesStaying = minutesStaying;
 
         //calculate random arrival time difference
-        int difference = (int) ((random.nextInt(30) * 0.6));
+        int difference = ((random.nextInt(100)));
         int rand = random.nextInt(5);
 
-        if (difference >= 15) { //car won't arrive
+        if (difference >= 75) { //car won't arrive
             willArrive = false;
-        } else if (rand == 1){
+        } else if (rand >= 1){
             actualArrival += difference; //car will arrive difference minutes later
         } else if(rand == 0){
             actualArrival -= difference; //car will arrive difference minutes earlier
         } else {
             actualArrival = 0; // op tijd
         }
-
     }
 
     /**
@@ -52,6 +44,10 @@ public class PrivateReservation extends Car {
      */
     public Color getColor(){
         return COLOR;
+    }
+
+    public static void setCOLOR(Color COLOR) {
+        PrivateReservation.COLOR = COLOR;
     }
 
     /**

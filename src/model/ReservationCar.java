@@ -1,10 +1,8 @@
 package model;
 
-import java.awt.*;
 import java.util.Random;
 
-public class ReservationCar extends Car {
-    private static final Color COLOR = Color.orange;
+public class ReservationCar extends AdHocCar {
 
     public ReservationCar(){
         Random random = new Random();
@@ -13,7 +11,4 @@ public class ReservationCar extends Car {
         this.setHasToPay(true);
     }
 
-    public Color getColor(){
-        return COLOR;
-    }
 }

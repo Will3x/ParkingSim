@@ -35,9 +35,9 @@ public class PiechartView extends View {
     @Override
     public void update() {
         if (model.getPassCars() == 0 && model.getAdHocCars() == 0){
-            chart.updateChart(1, 1);
+            chart.updateChart(1, 0, 0);
         } else {
-            chart.updateChart(model.getPassCars(), model.getAdHocCars());
+            chart.updateChart(model.getNumberOfOpenSpots(),model.getPassCars(), model.getAdHocCars());
         }
         super.update();
     }

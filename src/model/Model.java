@@ -32,8 +32,8 @@ public class Model
     private int weekendReservations = 100;  // average number of PrivateReservations per hour during weekend
 
     private int passholderAmmount = 120;    // number of passholders
-    private int weekDayPassArrivals= 30;    // average number of arriving PassHolder cars per hour during week
-    private int weekendPassArrivals = 40;   // average number of arriving PassHolder cars per hour during weekend
+    private int weekDayPassArrivals= 25;    // average number of arriving PassHolder cars per hour during week
+    private int weekendPassArrivals = 25;   // average number of arriving PassHolder cars per hour during weekend
 
     private int enterSpeed = 3;             // number of cars that can enter per minute
     private int paymentSpeed = 7;           // number of cars that can pay per minute
@@ -245,8 +245,8 @@ public class Model
         while (reservation!=null) {
             if (reservation.isArriving()){
                 Car car = new ReservationCar();
+                reservation.setCOLOR(Color.green);
                 reservation.setHandled(true);
-                reservation.setCar((ReservationCar) car);
                 if (entranceCarQueue.carsInQueue() > 5 && entrancePassQueue.carsInQueue() % 2 == 0) {
                     entrancePassQueue.addCar(car);
                 } else {
@@ -594,45 +594,6 @@ public class Model
         return false;
     }
 
-    public void addNewCar(Integer amount, String type){
-        if(amount == null) amount = 1;
-
-        Car car = null;
-        Location location = null;
-        int freelocations = 0;
-
-        for (int i = 0; i < amount; i++) {
-            switch (type) {
-                case "ADHOC":
-                    car = new AdHocCar();
-                    location = getFirstFreeLocation();
-                    freelocations = getNumberOfOpenSpots();
-                    freelocations = freelocations - i;
-                    break;
-                case "PASS":
-                    car = new ParkingPassCar();
-                    location = getFirstReservedPassLocation();
-                    freelocations = getNumberOfOpenPassSpots();
-                    freelocations = freelocations - i;
-                    break;
-                case "RSRV":
-                    Time time = Time.getInstance();
-                    int day = time.getDay();
-                    int hour = time.getHour()+2;
-                    if((getNumberOfOpenSpots()-i) > 0) {
-                        createReservations(1.0, day, hour, null);
-                    }
-
-            }
-            if( freelocations > 0 && car != null && location != null ){
-                setCarAt(location, car);
-            }
-        }
-
-
-    }
-
-
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -651,7 +612,7 @@ public class Model
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
-                    for (int place = 4; place < getNumberOfPlaces(); place++) {
+                    for (int place = 5; place < getNumberOfPlaces(); place++) {
 
                         Random rand = new Random();
                         int n = rand.nextInt(4);
@@ -677,11 +638,11 @@ public class Model
     public Location getFirstFreePassLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                for (int place = 0; place < 5; place++) {
 
                     Random rand = new Random();
                     int n = rand.nextInt(4);
-                    int y = rand.nextInt(4);
+                    int y = rand.nextInt(1);
                     int newRow = row;
                     int newPlace = place;
 
@@ -1007,17 +968,16 @@ public class Model
      * @param weekend The average amount of reservations in the weekend
      */
     private void generateWeeklyPrivateReservations(int weekDay, int weekend) {
-        double averageNumberOfCarsPerHour = 1;
+        double averageNumberOfCarsPerHour;
 
         // Get the average number of cars that arrive per hour during week.
         for(int day = 0; day < 4; day++) {
             for (int hour = 6; hour < 23; hour++) {
                 averageNumberOfCarsPerHour = weekDay;
-                int eventLength = 23-hour;
-                if (hour < 18){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, eventLength) ;}
-                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, eventLength) ;}
-                if (hour == 19){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, eventLength) ;}
-                if (hour > 19 && hour < 23){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, eventLength) ;}
+                if (hour < 18){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
+                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
+                if (hour == 19){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
+                if (hour > 19 && hour < 23){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 1) ;}
             }
         }
 
@@ -1025,22 +985,22 @@ public class Model
             for (int hour = 6; hour < 24; hour++) {
                 averageNumberOfCarsPerHour = weekend;
                 if (hour < 18){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
-                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.5, day, hour, 2) ;}
-                if (hour == 19){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
-                if (hour == 20){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
+                if (hour == 18){createReservations(averageNumberOfCarsPerHour*0.5, day, hour, 4) ;}
+                if (hour == 19){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 4) ;}
+                if (hour == 20){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 3) ;}
                 if (hour == 21){createReservations(averageNumberOfCarsPerHour*0.5, day, hour, 2) ;}
                 if (hour == 22){createReservations(averageNumberOfCarsPerHour*0.3, day, hour, 2) ;}
-                if (hour < 24){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
+                if (hour > 22 && hour < 24){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
             }
         }
 
         for(int day = 5; day < 7; day++){
             for (int hour = 6; hour < 18; hour++) {
                 averageNumberOfCarsPerHour = weekend;
-                if (hour < 12){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
+                if (hour < 12){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 1) ;}
                 if (hour == 12){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
                 if (hour == 13){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
-                if (hour == 14){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
+                if (hour == 14){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 4) ;}
                 if (hour == 15){createReservations(averageNumberOfCarsPerHour*1.0, day, hour, 2) ;}
                 if (hour == 16){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, 2) ;}
                 if (hour == 17){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, 2) ;}
