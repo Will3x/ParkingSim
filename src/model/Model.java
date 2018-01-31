@@ -26,7 +26,7 @@ public class Model
 
     //Simulator default stats
     private int weekDayArrivals= 120;       // average number of arriving AdHoc cars per hour during week
-    private int weekendArrivals = 250;      // average number of arriving AdHoc cars per hour during weekend
+    private int weekendArrivals = 300;      // average number of arriving AdHoc cars per hour during weekend
 
     private int weekDayReservations = 30;   // average number of PrivateReservations per hour during week
     private int weekendReservations = 50;  // average number of PrivateReservations per hour during weekend
@@ -592,19 +592,7 @@ public class Model
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                     for (int place = 5; place < getNumberOfPlaces(); place++) {
-
-                        Random rand = new Random();
-                        int n = rand.nextInt(4);
-                        int y = rand.nextInt(30);
-                        int newRow = row;
-                        int newPlace = place;
-
-                        if (row + n < getNumberOfRows() && place + y < getNumberOfPlaces()) {
-                            newRow += n;
-                            newPlace += y;
-                        }
-
-                        Location location = new Location(floor, newRow, newPlace);
+                        Location location = new Location(getRandomFloor(floor, 100), getRandomRow(row, 6), getRandomPlace(place, 30, getNumberOfPlaces()));
                         if (getCarAt(location) == null) {
                             return location;
                         }
@@ -618,18 +606,7 @@ public class Model
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < 5; place++) {
-
-                    Random rand = new Random();
-                    int n = rand.nextInt(4);
-                    int y = rand.nextInt(1);
-                    int newRow = row;
-                    int newPlace = place;
-
-                    if (row + n < getNumberOfRows() && place + y < getNumberOfPlaces()) {
-                        newRow += n;
-                        newPlace += y;
-                    }
-                    Location location = new Location(floor, newRow, newPlace);
+                    Location location = new Location(floor, getRandomRow(row,4), getRandomPlace(place,4,4));
                     if (getCarAt(location) == null) {
                         return location;
                     }
@@ -637,6 +614,43 @@ public class Model
             }
         }
         return null;
+    }
+
+    private int getRandomFloor(int floor, int randomBound){
+        int newFloor = floor;
+
+        Random rand = new Random();
+        int n = rand.nextInt(randomBound);
+
+        if (n < 2 && newFloor+1 < getNumberOfFloors()) {
+            newFloor += n;
+            return newFloor;
+        }
+        return floor;
+    }
+
+    private int getRandomPlace(int place, int randomBound, int numMaxPlaces){
+        int newPlace = place;
+
+        Random rand = new Random();
+        int n = rand.nextInt(randomBound);
+
+        if (newPlace + n < numMaxPlaces) {
+            newPlace += n;
+        }
+        return newPlace;
+    }
+
+    private int getRandomRow(int row, int randomBound){
+        int newRow = row;
+
+        Random rand = new Random();
+        int n = rand.nextInt(randomBound);
+
+        if (newRow + n < getNumberOfRows()) {
+            newRow += n;
+        }
+        return newRow;
     }
 
 
