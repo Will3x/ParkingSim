@@ -48,7 +48,7 @@ public class Time {
      * Return the current hour.
      * @return the current hour.
      */
-    int getHour(){
+    public int getHour(){
         return hour;
     }
 

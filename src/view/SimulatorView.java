@@ -229,6 +229,6 @@ public class SimulatorView extends JFrame{
         pieView.update();
         winningsController.updateView();
         carParkView.updateView();
-
+        timeView.update();
     }
 }
