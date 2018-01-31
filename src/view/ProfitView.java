@@ -16,9 +16,11 @@ public class ProfitView extends View {
      */
     public ProfitView() {
         setLayout(new GridLayout(2, 1));
+
         winnings = new JLabel("Totale opbrengst: ");
         parkedWinnings = new JLabel("Geparkeerde winst: ");
         profit = new ProfitController(this);
+        setPreferredSize(new Dimension(200,50));
 
         add(winnings);
         add(parkedWinnings);

@@ -383,8 +383,12 @@ public class Model
                 if (time.getDay() == 5){
                     averageNumberOfCarsPerHour = (int) Math.floor(weekend/100*formula);
                 }
-                if (time.getDay() == 6){
-                    averageNumberOfCarsPerHour = (int) Math.floor(weekend/100*formula);
+                if (time.getDay() == 6) {
+                    if (time.getHour() <= 19) {
+                        averageNumberOfCarsPerHour = (int) Math.floor(weekend / 100 * formula);
+                    } else {
+                        averageNumberOfCarsPerHour = (int) Math.floor(weekDay / 100 * formula);
+                    }
                 }
                 break;
             case PASS:
@@ -1035,15 +1039,14 @@ public class Model
                 averageNumberOfCarsPerHour = weekDay;
                 if (hour < 12){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, r) ;}
                 if (hour == 12){createReservations(averageNumberOfCarsPerHour*0.2, day, hour, r) ;}
-                if (hour == 13){createReservations(averageNumberOfCarsPerHour*0.6, day, hour, r) ;}
-                if (hour == 14){createReservations(averageNumberOfCarsPerHour*0.7, day, hour, 4) ;}
+                if (hour == 13){createReservations(averageNumberOfCarsPerHour*0.8, day, hour, r) ;}
+                if (hour == 14){createReservations(averageNumberOfCarsPerHour*0.9, day, hour, 4) ;}
                 if (hour == 15){createReservations(averageNumberOfCarsPerHour*0.4, day, hour, r) ;}
                 if (hour == 16){createReservations(averageNumberOfCarsPerHour*0.3, day, hour, r) ;}
                 if (hour == 17){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, r) ;}
                 if (hour > 17 && hour <= 21 ){createReservations(averageNumberOfCarsPerHour*0.1, day, hour, r) ;}
             }
         }
-
 
         reservationsGenerated = true;
     }

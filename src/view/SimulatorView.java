@@ -41,6 +41,7 @@ public class SimulatorView extends JFrame{
     private Timer timer;
     private ProfitView winningsView;
     private PiechartView pieView;
+    private CarQueueView queueView;
 
     /***
      * Constructor for Simulator. Creates all Models, Views and Controllers.
@@ -70,6 +71,9 @@ public class SimulatorView extends JFrame{
 //        controlPanelView = new ControlPanelView();
         addEventView = new addEventView();
 
+        //QueueView
+        queueView = new CarQueueView();
+
 
         //Controllers
         //graphController = new GraphController(simulatorModel, histoGraph, lineGraph);
@@ -82,7 +86,7 @@ public class SimulatorView extends JFrame{
         //infoController = new InfoController(infoView, simulatorModel);
         stepController = new StepController(stepInterface, simulatorModel);
 
-        simulatorController = new SimulatorController(carParkView, simulatorModel);
+        simulatorController = new SimulatorController(carParkView, queueView, simulatorModel);
 
         //Controllers
 //        //timeController = new TimeController(timeView, time);
@@ -230,5 +234,6 @@ public class SimulatorView extends JFrame{
         winningsController.updateView();
         carParkView.updateView();
         timeView.update();
+        simulatorController.updateQueue();
     }
 }
