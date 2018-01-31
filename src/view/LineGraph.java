@@ -55,7 +55,7 @@ public class LineGraph extends GraphView {
         // Push everything 1 step back
         graphG.copyArea(1, 0, width-1, height, -1, 0);
 
-        max = adHoc + pass;
+        max = adHoc + pass + 100;
 
         int[] values = {adHoc, pass, reserve};
         Arrays.sort(values);
