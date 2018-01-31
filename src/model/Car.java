@@ -1,12 +1,10 @@
 package model;
 
-import model.Location;
-
 import java.awt.*;
 
 public abstract class Car {
 
-    public Location location;
+    protected Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
@@ -15,7 +13,7 @@ public abstract class Car {
     /**
      * Constructor for objects of class Car
      */
-    public Car() {
+    protected Car() {
 
     }
 
@@ -31,7 +29,7 @@ public abstract class Car {
         return minutesLeft;
     }
 
-    public void setMinutesLeft(int minutesLeft) {
+    protected void setMinutesLeft(int minutesLeft) {
         this.minutesLeft = minutesLeft;
     }
 
@@ -47,7 +45,7 @@ public abstract class Car {
         return hasToPay;
     }
 
-    public void setHasToPay(boolean hasToPay) {
+    protected void setHasToPay(boolean hasToPay) {
         this.hasToPay = hasToPay;
     }
 

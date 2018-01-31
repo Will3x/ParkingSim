@@ -13,6 +13,7 @@ public class SimulatorController {
     private CarParkView view;
     private Model model;
     private Graphics graphics;
+    private CarQueueModel queueModel;
     private CarQueueView queueView;
 
     /**
@@ -23,6 +24,7 @@ public class SimulatorController {
     public SimulatorController(CarParkView view, CarQueueView queueView, Model model) {
         this.view = view;
         this.model = model;
+        this.queueModel = new CarQueueModel();
         this.queueView = queueView;
     }
 
@@ -67,12 +69,12 @@ public class SimulatorController {
         int queueAmount = carQueue.carsInQueue();
         Queue<Car> queue = carQueue.getQueue();
         if(queueAmount == 0){
-            queueView.drawQueues(graphics, name, 0, Color.black, queueAmount);
+            queueModel.drawQueues(graphics, name, 0, Color.black, queueAmount);
         } else {
             int i = 0;
             for (Car car : queue) {
                 Color color = car.getColor();
-                queueView.drawQueues(graphics, name, i, color, queueAmount);
+                queueModel.drawQueues(graphics, name, i, color, queueAmount);
                 i++;
             }
         }

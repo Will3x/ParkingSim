@@ -17,7 +17,7 @@ public class CarParkView extends View {
     /**
      * Constructor for objects of class CarPark
      */
-    public CarParkView(SimulatorView simView, Model model) {
+    protected CarParkView(SimulatorView simView, Model model) {
         size = new Dimension(0, 0);
         this.simView = simView;
         this.model = model;

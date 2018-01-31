@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-
 public class StepInterface extends JPanel {
     private JButton start;
     private JButton cont;

@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class addEventView {
@@ -54,6 +53,8 @@ public class addEventView {
 
         panel.add(addButton);
     }
+
+
 
     /**
      * Gets the name of the event

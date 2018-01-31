@@ -1,7 +1,6 @@
 package controller;
 
 import model.Event;
-import model.EventKoopavond;
 import model.Model;
 import view.addEventView;
 
@@ -28,4 +27,5 @@ public class AddEventController {
         Event event = new Event(view.getName(), view.getArrivals(), view.getStartDay(), view.getStartHour(), view.getEndDay(), view.getEndHour());
         model.events.add(event);
     }
+
 }

@@ -15,11 +15,13 @@ public class StepController {
     private boolean paused = false;
     private int temp = 0;
     private Time time;
-    private Profits profit;
+    private ProfitController profit;
+    private Profits pro;
 
     public StepController(final StepInterface stepview, Model model){
         this.stepview = stepview;
         this.model = model;
+        pro = pro.getInstance();
         time = time.getInstance();
         sound = new Sound();
         addEventHandelers();
@@ -37,7 +39,7 @@ public class StepController {
                 }
                 stepview.getStart().setVisible(false);
                 stepview.getCont().setVisible(true);
-                stepview.enableResetButton();
+                stepview.disableResetButton();
                 System.out.println(model.getSteps() + " steps remaining");
             }
         });
@@ -49,13 +51,22 @@ public class StepController {
                 temp = model.getSteps();
                 model.setSteps(0);
                 paused = true;
+                stepview.enableResetButton();
             }
         });
 
         stepview.addResetListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 sound.playSound("click.wav");
+                model.removeAllCars();
+                time.setDay(0);
+                time.setHour(0);
+                time.setMinute(0);
+                pro.resetStats();
+                paused = false;
+                stepview.disableStop();
             }
         });
 

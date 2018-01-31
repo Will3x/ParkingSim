@@ -209,16 +209,16 @@ public class Model
         }
     }
 
-    /**
-     * Reservers pass spots
-     * @param amount - amount of reservations to be reserved
-     */
-    private void removePassSpots(int amount){
-        for(int i = 0; i < amount; i++){
-            Location location = getFirstReservedPassLocation();
-            removePassReservationAt(location);
+    public void removeAllCars() {
+            for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                for (int row = 0; row < getNumberOfRows(); row++) {
+                    for (int place = 0; place < getNumberOfPlaces(); place++) {
+                        Location location = new Location(floor, row, place);
+                        removeCarAt(location);
+                    }
+                }
+            }
         }
-    }
 
     /**
      * Handles arriving private reservation
@@ -668,61 +668,6 @@ public class Model
             return null;
         }
         return passReservations[location.getFloor()][location.getRow()][location.getPlace()];
-    }
-
-    /**
-     * The setPassReservationAt method sets a Reservation at the given Location
-     * @param location The location of the Reservation
-     * @param reservation Reservation to be stored on Location
-     * @return boolean true if success
-     */
-    private boolean setPassReservationAt(Location location, Reservation reservation) {
-        if (!locationIsValid(location)) {
-            return false;
-        }
-        Reservation oldReservation = getPassReservationAt(location);
-        if (oldReservation == null) {
-            passReservations[location.getFloor()][location.getRow()][location.getPlace()] = reservation;
-            reservation.setLocation(location);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * The removePassReservationAt method removes a PassReservation at given location
-     * @param location The location where PassReservation needs to be removed
-     * @return the Reservation that has been removed
-     */
-    private Reservation removePassReservationAt(Location location) {
-        if (!locationIsValid(location)) {
-            return null;
-        }
-        Reservation reservation = getPassReservationAt(location);
-        if (reservation == null) {
-            return null;
-        }
-        passReservations[location.getFloor()][location.getRow()][location.getPlace()] = null;
-        reservation.setLocation(null);
-        return reservation;
-    }
-
-    /**
-     * Gets the first free location that's reserved for pass holders.
-     * @return a free location for passholders only.
-     */
-    private Location getFirstReservedPassLocation() {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null && getPassReservationAt(location) != null) {
-                        return location;
-                    }
-                }
-            }
-        }
-        return null;
     }
 
     /**
