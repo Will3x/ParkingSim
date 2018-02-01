@@ -20,7 +20,7 @@ public class ProfitView extends View {
         winnings = new JLabel("Totale opbrengst: ");
         parkedWinnings = new JLabel("Geparkeerde winst: ");
         profit = new ProfitController(this);
-        setPreferredSize(new Dimension(200,50));
+        setPreferredSize(new Dimension(200, 50));
 
         add(winnings);
         add(parkedWinnings);
@@ -32,14 +32,10 @@ public class ProfitView extends View {
 
     /**
      * Update the winningsView with the current parkedWinnings.
+     *
      * @param parkedWinnings amount of money currently parked
      */
     public void setParkedWinningsText(double parkedWinnings) {
-        this.parkedWinnings.setText("Geparkeerde winst: " + parkedWinnings);
-    }
-
-    @Override
-    public void update() {
-        super.update();
+        this.parkedWinnings.setText("Geparkeerd: " + parkedWinnings);
     }
 }

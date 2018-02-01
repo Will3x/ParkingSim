@@ -13,14 +13,6 @@ public class HistoGraph extends GraphView{
     private String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private ProfitController winnings;
 
-    /**
-     * Create the HistoGraph instance and apply the arguments to its fields.
-     * @param width    Width of the graph.
-     * @param height   Height of the graph.
-     * @param max      Max value of the graph.
-     * @param xPos     starting xposition of the drawing.
-     * @param winnings Winningscontroller.
-     */
     public HistoGraph (int width, int height ,int max, int xPos, ProfitController winnings) {
         super(width,height,max);
         this.width = width;
@@ -29,10 +21,6 @@ public class HistoGraph extends GraphView{
         this.winnings = winnings;
     }
 
-    /**
-     * Repaint every day of the histograph based on the data that it gets from the winningsController.
-     * @param g Graphics instance used for the drawing.
-     */
     public void paint(Graphics g) {
         super.paint(g);
         int startingHeight  = height - 50;

@@ -33,25 +33,25 @@ public class TimeView extends View {
     }
 
     public void update(){
-        if ((time.getDay() ==  3) && (time.getHour() >= 17) && (time.getHour() <= 21)) {
-            add(kAvondLabel);
-        } else {
-            remove(kAvondLabel);
-        }
+            if ((time.getDay() ==  3) && (time.getHour() >= 17) && (time.getHour() <= 21)) {
+                add(kAvondLabel);
+            } else {
+                remove(kAvondLabel);
+            }
 
-        if((time.getDay() ==  4) && (time.getHour() >= 19) && (time.getHour() <= 22)
-                || time.getDay() == 5 && time.getHour() >= 19 && time.getHour() <= 22
-                || time.getDay() == 6 && time.getHour() >= 13 && time.getHour() <= 16){
-            add(eventLabel);
-        } else {
-            remove(eventLabel);
-        }
+            if((time.getDay() ==  4) && (time.getHour() >= 19) && (time.getHour() <= 22)
+                    || time.getDay() == 5 && time.getHour() >= 19 && time.getHour() <= 22
+                    || time.getDay() == 6 && time.getHour() >= 13 && time.getHour() <= 16){
+                add(eventLabel);
+            } else {
+                remove(eventLabel);
+            }
 
-        if ((time.getDay() ==  4) && time.getHour() >= 17 || time.getDay() == 5 || time.getDay() == 6 && time.getHour() <= 23) {
-            add(weekendLabel);
-        } else {
-            remove(weekendLabel);
-        }
+            if ((time.getDay() ==  4) && time.getHour() >= 17 || time.getDay() == 5 || time.getDay() == 6 && time.getHour() <= 23) {
+                add(weekendLabel);
+            } else {
+                remove(weekendLabel);
+            }
         revalidate();
         repaint();
     }

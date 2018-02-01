@@ -12,15 +12,4 @@ public class EventController {
         this.view = view;
         this.model = model;
     }
-
-    public void updateView(){
-            view.removeAll();
-
-            view.addHeader();
-            for (Event event : model.events) {
-                view.drawEvent(event);
-            }
-            view.repaint();
-            view.revalidate();
-    }
 }

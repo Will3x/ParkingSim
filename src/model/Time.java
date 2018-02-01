@@ -11,9 +11,6 @@ public class Time {
 
     private static Time instance = new Time();
 
-    /**
-     * Creates a time instance with an array with all days in it.
-     */
     public Time(){
         dayStrings = new String[7];
         dayStrings[0] = "Monday";
@@ -73,7 +70,6 @@ public class Time {
     private void tick() {
         advanceTime();
         model.handleExit();
-        //model.updateViews();
         // Pause.
         try {
             Thread.sleep(tickPause);
@@ -114,18 +110,10 @@ public class Time {
         return getDayString() + ": " + hourString + ":" + minuteString;
     }
 
-    /**
-     * Return wether the simulator has reached a new week or not.
-     * @return wether it is a ne w week (true) or not (false).
-     */
     boolean getNewWeek(){
         return newWeek;
     }
 
-    /**
-     * Sets the newWeek value.
-     * @param newWeek The new value of the newWeek field.
-     */
     void setNewWeek(boolean newWeek){
         this.newWeek = newWeek;
     }

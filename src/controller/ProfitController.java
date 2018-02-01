@@ -13,18 +13,6 @@ public class ProfitController {
         this.view = view;
     }
 
-    public void updateProfits(double amount) {
-        model.addWinnings(amount);
-    }
-
-    public void updateParkedWinnings(double amount) {
-        model.addParkedWinnings(amount);
-    }
-
-    public void resetProfits() {
-        model.setWinnings(0.0);
-    }
-
     public void updateView() {
         view.setWinningsText(model.getWinnings());
         view.setParkedWinningsText(model.getParkedWinnings());

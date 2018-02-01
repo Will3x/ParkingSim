@@ -24,10 +24,13 @@ public class SimulatorView extends JFrame{
     private EventController eventController;
     private AddEventController addEventController;
     private StepController stepController;
+    private SettingsController setController;
 
     //Views
     private HistoGraph histoGraph;
+    private SimulatorView simView;
     private LineGraph lineGraph;
+    private SettingsView setView;
     private StepInterface stepInterface;
     private CarParkView carParkView;
     private TimeView timeView;
@@ -61,6 +64,7 @@ public class SimulatorView extends JFrame{
         eventView = new EventView();
         addEventView = new addEventView();
         queueView = new CarQueueView();
+        setView = new SettingsView(this);
 
         //Controllers
         timeController = new TimeController(timeView);
@@ -69,6 +73,7 @@ public class SimulatorView extends JFrame{
         eventController = new EventController(eventView, simulatorModel);
         addEventController = new AddEventController(addEventView, simulatorModel);
         stepController = new StepController(stepInterface, simulatorModel);
+//        setController = new SettingsController(setView);
 
         simulatorController = new SimulatorController(carParkView, queueView, simulatorModel);
 
@@ -89,6 +94,7 @@ public class SimulatorView extends JFrame{
         tabbedPane.addTab("Geparkeerde auto's", lineGraph);
 
         tabbedPane.setPreferredSize(new Dimension(830,380));
+        setView.setAlignmentX(300);
 
         JPanel pnl = new JPanel();
         pnl.setPreferredSize(new Dimension(lineGraph.getWidth(), lineGraph.getHeight()+60));
@@ -108,7 +114,7 @@ public class SimulatorView extends JFrame{
         JPanel eastPanel = new JPanel(new BorderLayout());
         eastPanel.add(pieView, BorderLayout.NORTH);
         eastPanel.add(infoView, BorderLayout.CENTER);
-        eastPanel.add(eventView,BorderLayout.SOUTH);
+//        eastPanel.add(setView,BorderLayout.SOUTH);
 
         jPanel.add(carParkPanel, BorderLayout.CENTER);
         jPanel.add(westPanel, BorderLayout.WEST);
@@ -199,7 +205,6 @@ public class SimulatorView extends JFrame{
         winningsView.update();
         pieView.update();
         winningsController.updateView();
-        carParkView.updateView();
         timeView.update();
         simulatorController.updateQueue();
     }

@@ -9,15 +9,6 @@ public class Event {
     private int endHour;
     private Boolean running = false;
 
-    /**
-     * Constructor for Event. Creates an event
-     * @param name - name of the event
-     * @param arrivals - amount of cars that are going to be arriving
-     * @param startDay - start day of the event
-     * @param startHour - start hour of the event
-     * @param endDay - end day of the event
-     * @param endHour - end hour of the event
-     */
     public Event(String name, int arrivals, int startDay, int startHour, int endDay, int endHour){
         this.name = name;
         this.arrivals = arrivals;

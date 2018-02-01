@@ -357,8 +357,8 @@ public class Model
                 double formula = ((-0.069444*Math.pow(time.getHour(),2))+(2.083333*time.getHour()) - 5.625) * 10;
                 // Get the average number of cars that arrive per hour.
 
-                if (time.getDay() == 0){              // Maandag
-                    averageNumberOfCarsPerHour = (int) Math.floor(weekDay/100*formula);
+                if (time.getDay() == 0){ // Maandag
+                        averageNumberOfCarsPerHour = (int) Math.floor(weekDay / 100 * formula);
                 }
                 if (time.getDay() == 1){ // Dinsdag
                     averageNumberOfCarsPerHour = (int) Math.floor(weekDay/100*formula);
